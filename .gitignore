@@ -1,1 +1,6 @@
 game/Library
+game/Assembly-CSharp-vs.csproj
+game/Assembly-CSharp.csproj
+game/game-csharp.sln
+game.sln
+game/Temp
