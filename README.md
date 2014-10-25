@@ -29,6 +29,8 @@ SVNは、リモートの一つのリビジョンと同期するため、リポ�
 
 Gitは、作業フォルダとリモートのリポジトリと同期するため、リポジトリをcloneした後、基本ローカルでのcommitとなる、pullとpushは、リポジトリの同期とコマンドとなる。pullでローカルリポジトリのないものをリモートから取得し、pushでその逆、リモートリポジトリにローカルリポジトリの更新を反映させる。詳しくは[公式サイトのドキュメント][5]で見てください。
 
+SVNとは違うのだよ！SVNとは！
+
 
   [1]: https://www.atlassian.com/software/sourcetree/overview
   [2]: https://windows.github.com
