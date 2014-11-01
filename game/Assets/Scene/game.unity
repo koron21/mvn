@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0531b80ec1496a642ba3bfe9bc92340f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTime: 10
+  StageTime: 10
 --- !u!4 &2014398395
 Transform:
   m_ObjectHideFlags: 0
@@ -253,7 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c498c84042247ca43b67b5431a646f2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 2014398394}
 --- !u!4 &2086921337
 Transform:
   m_ObjectHideFlags: 0

@@ -4,19 +4,17 @@ using System.Collections;
 [RequireComponent(typeof(GUIText))]
 public class DebugPrintInfo : MonoBehaviour
 {
-    public Game game;
-
-    private GUIText _guiText;
+    private Game game;
 
     // Use this for initialization
     void Start()
     {
-        _guiText = GetComponent<GUIText>();
+		game = FindObjectOfType<Game>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _guiText.text = "Stage Time: " + game.Timer.ToString("F02");
+        guiText.text = "Stage Time: " + game.Timer.ToString("F02");
     }
 }
