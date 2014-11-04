@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ringo
+  m_Name: Heart
   m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: []
   m_CustomRenderQueue: -1
@@ -17,7 +17,7 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: ffde037abb9750f439f581e2926c7114, type: 3}
+          m_Texture: {fileID: 2800000, guid: 849a41c9ed12406488276dd7a2474da1, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -31,13 +31,13 @@ Material:
       data:
         first:
           name: _Outline
-        second: .00499999989
+        second: .00699999975
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .573529422, g: .345804513, b: .345804513, a: 1}
+        second: {r: .654411793, g: .52930367, b: .52930367, a: 1}
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 1, g: .161764681, b: .595334768, a: 1}
