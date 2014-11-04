@@ -5,7 +5,7 @@ public class Game : MonoBehaviour
 {
     //! @brief game time
     [Range(0, 300)]
-    public float StageTime;
+    public float stageTime;
 
     //! @brief getter for timer
     public float Timer
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        timer = StageTime;
+        timer = stageTime;
     }
 
     // Update is called once per frame
