@@ -15,6 +15,17 @@ public class DebugPrintInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        guiText.text = "Stage Time: " + game.Timer.ToString("F02");
+        guiText.text = "Stage Time: " + game.Timer.ToString("F02") + "\n"
+            + "Player1\n"
+            + "==============\n"
+            + "move left: a\n" 
+            + "move right: d\n"
+            + "boost: space\n"
+            + "\n"
+            + "Player2\n"
+            + "==============\n"
+            + "move left: left\n" 
+            + "move right: right\n"
+            + "boost: boost\n";
     }
 }

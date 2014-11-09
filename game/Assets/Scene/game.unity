@@ -555,6 +555,62 @@ GUIText:
     rgba: 4294967295
   m_PixelCorrect: 1
   m_RichText: 1
+--- !u!1 &2018614681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2018614683}
+  - 114: {fileID: 2018614682}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2018614682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2018614681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebce4a4e96ac45a99e9463bf4e0e089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystickNames: []
+  stick: 0
+  stick1: 0
+  stick2: 0
+  balance: 0
+  boostAmount: .100000001
+  boostTime: .5
+  p1Settings:
+    joystickAxisName: Player1-Joystick
+    keyboardAxisName: Player1-Keyboard
+    boostButton: 350
+    boostKey: 32
+  p2Settings:
+    joystickAxisName: Player2-Joystick
+    keyboardAxisName: Player2-Keyboard
+    boostButton: 370
+    boostKey: 13
+--- !u!4 &2018614683
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2018614681}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.50328255, y: -5.2684803, z: -8.03722668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &2086921335
 GameObject:
   m_ObjectHideFlags: 0

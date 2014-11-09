@@ -18,20 +18,19 @@ public class Game : MonoBehaviour
     private float timer;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
         timer = stageTime;
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0)
-            {
-                // result
-                Application.LoadLevel(2);
-            }
+        if (timer <= 0) {
+            // result
+            Application.LoadLevel (2);
+        }
     }
 }
