@@ -5,33 +5,32 @@ public class Game : MonoBehaviour
 {
     //! @brief game time
     [Range(0, 300)]
-    public float stageTime;
+    public float
+        stageTime;
 
     //! @brief getter for timer
-    public float Timer
-    {
-        get
-        {
+    public float Timer {
+        get {
             return timer;
         }
     }
+
     private float timer;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
         timer = stageTime;
     }
 
     // Update is called once per frame
-    void Update()
+    void Update ()
     {
         timer -= Time.deltaTime;
 
-        if (timer <= 0)
-        {
+        if (timer <= 0) {
             // result
-            Application.LoadLevel(2);
+            Application.LoadLevel (2);
         }
     }
 }
