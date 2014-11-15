@@ -45,6 +45,8 @@ public class GameInput : MonoBehaviour
 
     public PlayerInputSettings p1Settings;
     public PlayerInputSettings p2Settings;
+    [Range(0.0f, 1.0f)]
+    public float deadZone;
 
     void DefaultSettings()
     {
@@ -128,7 +130,9 @@ public class GameInput : MonoBehaviour
         else
             return Input.GetAxis(keyboard);
         */
-
-        return Input.GetAxis(joystick) + Input.GetAxis(keyboard);
+        float ret = Input.GetAxis(joystick) + Input.GetAxis(keyboard);
+        if (Mathf.Abs(ret) < deadZone)
+            ret = 0;
+        return ret;
     }
 }
