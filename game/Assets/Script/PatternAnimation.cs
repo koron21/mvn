@@ -22,6 +22,7 @@ public class PatternAnimation : MonoBehaviour
     void Start()
     {
         // default initializer
+        animationSpeed = 1.0f;
         if (legAnimationLength <= 0.0f)
             legAnimationLength = 1.0f;
 

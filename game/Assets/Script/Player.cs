@@ -5,6 +5,7 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public float speed = 3.0F;
+    public bool linkAnimationSpeedWithMotion;
 
     // reference
     private CharacterController controller;
@@ -31,7 +32,15 @@ public class Player : MonoBehaviour
         controller.SimpleMove(forward * curSpeed);
 
         // animation
-        bunbun.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick1()));
-        aichan.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick2()));
+        if (linkAnimationSpeedWithMotion)
+        {
+            bunbun.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick1()));
+            aichan.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick2()));
+        }
+        else 
+        {   
+            bunbun.SendMessage("SetAnimationSpeed", 1.0f);
+            aichan.SendMessage("SetAnimationSpeed", 1.0f);
+        }
     }
 }
