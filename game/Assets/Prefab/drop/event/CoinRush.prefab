@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11400000}
+  m_Layer: 0
+  m_Name: CoinRush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.09781933e-08, y: 1.89755273, z: -8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a2d07a4ccab4fdea111322c86521c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventOffsetPosX: 0
+  EventRandRadius: .699999988
+  DropObjectTypes: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  DropOffsetTimes:
+  - 0
+  - .5
+  - .800000012
+  - 1
+  - 1.14999998
+  - 1.25
+  - 1.29999995
+  - 1.35000002
+  - 1.39999998
+  - 1.45000005
+  - 1.5
+  - 1.54999995
+  - 1.60000002
+  - 1.64999998
+  - 1.70000005
+  - 1.75
+  - 1.79999995
+  - 1.85000002
+  - 1.89999998
+  - 1.95000005
+  - 2
+  - 2.04999995
+  - 2.0999999
+  - 2.1500001
+  - 2.20000005
+  - 2.25
+  - 2.29999995
+  - 2.3499999
+  - 2.4000001
+  - 2.45000005
+  - 2.5
+  - 2.54999995
+  - 2.5999999
+  - 2.6500001
+  - 2.70000005
+  - 2.79999995
+  - 2.9000001
+  - 3.0999999
+  - 3.4000001
+  - 3.79999995
+  DropCenterPosX:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  DropRadiusPosX:
+  - 0
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+  - .100000001
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1
