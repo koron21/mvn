@@ -109,7 +109,6 @@ public class DropHeart : DropUnit
 	private HEART_STATE mHeartState;
 	private int mParticleCount = 0;
 	private int mDelayCount = 0;
-	private float mOutRotZ = 0.0f;
 }
 
  

@@ -14,6 +14,7 @@ public class DropSystem : MonoBehaviour
 		FISH,
 		RICE,
 		APPLE,
+		HEART,
 
 		NUM,
 	};
@@ -73,6 +74,9 @@ public class DropSystem : MonoBehaviour
 		}
 
 		mTimer = 0.0f;
+		mGenTime = 0.0f;
+		Rank = 0.0f;
+		mDropCount = 0;
 	}
 	
 	// Update is called once per frame
@@ -80,6 +84,7 @@ public class DropSystem : MonoBehaviour
 	{
 		mTimer += Time.deltaTime;
 
+#if false
 		for(int i=0; i<mEventNum; i++) {
 			if( mbGeneratedEvent[i] == true ) {
 				continue;
@@ -93,6 +98,24 @@ public class DropSystem : MonoBehaviour
 				mbGeneratedEvent[i] = true;
 				Instantiate( DropEventList[i].EventPrefab );
 			}
+		}
+#endif
+
+		if( mTimer >= mGenTime ) {
+			if( (mDropCount % 10) == 9 ) {
+				Instantiate( DropEventList[1].EventPrefab );
+				mGenTime += 2.0f * calcNextDropTime();
+			}
+			else {
+				Instantiate( DropEventList[0].EventPrefab );
+				mGenTime += calcNextDropTime();
+			}
+			mDropCount++;
+		}
+
+		Rank += Time.deltaTime;
+		if( Rank >= mMaxRank ) {
+			Rank = mMaxRank;
 		}
 	}
 
@@ -117,6 +140,16 @@ public class DropSystem : MonoBehaviour
 	//==========================================================================
 	// Private Functions
 	//==========================================================================
+	private float calcNextDropTime()
+	{
+		float minTime = 0.5f;
+		float maxTime = 3.0f;
+		float rangeTime = 0.5f;
+		float time = maxTime - (maxTime - minTime) * Rank * Rank / (mMaxRank * mMaxRank);
+
+		return Random.Range (time, time+rangeTime);
+	}
+
 	
 	//==========================================================================
 	// Public Member Variables
@@ -131,7 +164,7 @@ public class DropSystem : MonoBehaviour
 	//! Origin DropUnit Prefab List
 	public DropUnit[] DropUnitPrefabs = new DropUnit[ (int)DROP_OBJECT.NUM ];
 	//! Drop Generate Event Data
-	public Event[] DropEventList = new Event[1];
+	public Event[] DropEventList = new Event[2];
 
 	//==========================================================================
 	// Private Member Variables
@@ -141,6 +174,11 @@ public class DropSystem : MonoBehaviour
 	private float mTimer = 0.0f;
 	private int mEventNum = 0;
 	private bool[] mbGeneratedEvent;
+
+	public float Rank = 0.0f;
+	private float mGenTime = 0.0f;
+	private float mMaxRank = 100.0f;
+	private int mDropCount = 0;
 }
 
 //==============================================================================

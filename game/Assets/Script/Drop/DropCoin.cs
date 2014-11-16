@@ -12,6 +12,7 @@ public class DropCoin : DropUnit
 		base.Start();
 
 		mRotForward = (Random.Range(0,2) == 0) ? 1 : -1;
+		mRotY = Random.Range(-100.0f, 100.0f);
 	}
 	
 	// Update is called once per frame
@@ -20,7 +21,7 @@ public class DropCoin : DropUnit
 		base.Update();
 
 		// rotation
-		addRotation(RotateSpeed * mRotForward, 0.0f, 0.0f);
+		addRotation(RotateSpeed * mRotForward, mRotY, 0.0f);
 		//addRotation(0.0f, RotateSpeed * mRotForward, 0.0f);
 	}
 
@@ -35,4 +36,5 @@ public class DropCoin : DropUnit
 	//==========================================================================
 	//! Do Rotate Forward Direction
 	private int mRotForward = 1;
+	private float mRotY = 0.0f;
 }

@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2300000}
   - 95: {fileID: 9500000}
   m_Layer: 0
-  m_Name: sakana_mod
+  m_Name: ringo_mod
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,9 +28,9 @@ GameObject:
   - 4: {fileID: 400002}
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
-  - 136: {fileID: 13600000}
+  - 135: {fileID: 13500000}
   m_Layer: 0
-  m_Name: Fish_Drop
+  m_Name: Ringo_Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,8 +55,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: 0, y: 1.70334387, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 5.51739311, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 400000}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 33bfe50105ec1b74aa7735c011d70e62, type: 2}
+  - {fileID: 2100000, guid: 0699030ec126f3d45834b274ecb83b6a, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -87,7 +87,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300000, guid: b4c75481eea5e9142b68f3bf5f7df6ed, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 50e80d2dfa75bfd45b31a5c72bbd7c4b, type: 3}
 --- !u!54 &5400000
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -111,7 +111,7 @@ Animator:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b4c75481eea5e9142b68f3bf5f7df6ed, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 50e80d2dfa75bfd45b31a5c72bbd7c4b, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -132,11 +132,11 @@ MonoBehaviour:
   ScoreLove: 0
   ScoreOther: 100
   SpeedRate: 1
-  RotationGoal: {x: -70, y: 90, z: 0}
-  RotationGoalInv: {x: -70, y: 270, z: 0}
+  RotationGoal: {x: 70, y: 90, z: 0}
+  RotationGoalInv: {x: 70, y: 270, z: 0}
   RotationTime: 4
---- !u!136 &13600000
-CapsuleCollider:
+--- !u!135 &13500000
+SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -144,10 +144,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: .25
-  m_Height: .600000024
-  m_Direction: 2
-  m_Center: {x: 0, y: .0399999991, z: .119999997}
+  serializedVersion: 2
+  m_Radius: .140000001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

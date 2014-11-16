@@ -63,7 +63,13 @@ public class DropEvent : MonoBehaviour
 			// Check Offset Time
 			if( mTimer >= DropOffsetTimes[i] ) {
 				float genPosX = mOffsetPosX + DropCenterPosX[i] + Random.Range(-DropRadiusPosX[i], DropRadiusPosX[i]);
-				DropSystem.Instance.generateDrop( DropObjectTypes[i], genPosX );
+
+				DropSystem.DROP_OBJECT dropObj = DropObjectTypes[i];
+				if( dropObj == DropSystem.DROP_OBJECT.NUM ) {
+					dropObj = (DropSystem.DROP_OBJECT)Random.Range(1, (int)DropSystem.DROP_OBJECT.NUM);
+				}	
+
+				DropSystem.Instance.generateDrop( dropObj, genPosX );
 				mbGeneratedObject[i] = true;
 			}
 
