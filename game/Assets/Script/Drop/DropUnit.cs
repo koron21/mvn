@@ -65,6 +65,9 @@ public class DropUnit : MonoBehaviour
 			mState        = STATE.OUT;
 			mOutDelayTime = 0.25f;
 			mOutScaleVel  = -transform.localScale / 0.5f;
+
+			// test score count
+			ScoreSystem.Instance.addScore( ScoreLove, ScoreMoney );
 		}
 		else {
 			// If ohter is Player Unit, add score

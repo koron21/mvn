@@ -84,6 +84,7 @@ public class DropSystem : MonoBehaviour
 	{
 		mTimer += Time.deltaTime;
 
+		// manual event set
 #if false
 		for(int i=0; i<mEventNum; i++) {
 			if( mbGeneratedEvent[i] == true ) {
@@ -100,7 +101,7 @@ public class DropSystem : MonoBehaviour
 			}
 		}
 #endif
-
+		// random event set
 		if( mTimer >= mGenTime ) {
 			if( (mDropCount % 10) == 9 ) {
 				Instantiate( DropEventList[1].EventPrefab );
