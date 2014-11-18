@@ -11,6 +11,10 @@ public class DropCoin : DropUnit
 	{
 		base.Start();
 
+		if( mState == STATE.HOLD ) {
+			return;
+		}
+
 		mRotForward = (Random.Range(0,2) == 0) ? 1 : -1;
 		mRotY = Random.Range(-100.0f, 100.0f);
 	}
@@ -20,6 +24,9 @@ public class DropCoin : DropUnit
 	{
 		base.Update();
 
+		if( mState == STATE.HOLD ) {
+			return;
+		}
 		// rotation
 		addRotation(RotateSpeed * mRotForward, mRotY, 0.0f);
 		//addRotation(0.0f, RotateSpeed * mRotForward, 0.0f);

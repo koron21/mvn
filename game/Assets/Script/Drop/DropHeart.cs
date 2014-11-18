@@ -17,6 +17,10 @@ public class DropHeart : DropUnit
 	{
 		base.Start();
 
+		if( mState == STATE.HOLD ) {
+			return;
+		}
+
 		mTimer = 0.0f;
 		mBaseScale = transform.localScale.x;
 		mCurrentScale = mBaseScale;

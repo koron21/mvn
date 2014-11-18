@@ -52,6 +52,9 @@ public class GaugeCtrl : MonoBehaviour
 	public void addValue(float value)
 	{
 		mObjectValue += value;
+		if( mObjectValue > MaxValue ) {
+			mObjectValue = MaxValue;
+		}
 		mTimer = 0.0f;
 		mAddValue = (mObjectValue - Value) / AddTime;
 	}

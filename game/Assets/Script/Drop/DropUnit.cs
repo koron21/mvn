@@ -11,6 +11,8 @@ public class DropUnit : MonoBehaviour
 		NONE,
 		FALL,
 		OUT,
+		GET,
+		HOLD,
 
 		STATE_NUM,
 	};
@@ -22,6 +24,13 @@ public class DropUnit : MonoBehaviour
 	// Use this for initialization
 	protected virtual void Start()
 	{
+		if( mState == STATE.HOLD ) {
+			mOutDelayTime = 0.0f;
+			mOutScaleVel = transform.localScale;
+			transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+			return;
+		}
+
 		Vector3 initPos = new Vector3(transform.localPosition.x,
 		                              DropSystem.Instance.GenerateHeight,
 		                              DropSystem.Instance.GenerateDepth);
@@ -35,17 +44,28 @@ public class DropUnit : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
 	{
+		if( mState == STATE.HOLD ) {
+			mOutDelayTime += Time.deltaTime;
+			if( mOutDelayTime <= 0.15f ) {
+				transform.localScale = mOutScaleVel * (mOutDelayTime / 0.15f);
+			}
+			return;
+		}
+
 		transform.localPosition += mVelocity * Time.deltaTime * SpeedRate;
 
 		mVelocity.y -= DropSystem.Instance.FallVelocity * Time.deltaTime;
 
-		if( mState == STATE.OUT ) {
+		if( mState == STATE.OUT || mState == STATE.GET ) {
 			mOutDelayTime -= Time.deltaTime;
 
 			if( mOutDelayTime <= 0.0f ) {
 				// Shrink Drop Object
 				transform.localScale += mOutScaleVel * Time.deltaTime;
 				if( transform.localScale.magnitude < 0.3f ) {
+					if( mState == STATE.GET ) {
+						DropSystem.Instance.generateDropInBasket(mDropType, 0);
+					}
 					Destroy(this.gameObject);
 				}
 			}
@@ -65,14 +85,32 @@ public class DropUnit : MonoBehaviour
 			mState        = STATE.OUT;
 			mOutDelayTime = 0.25f;
 			mOutScaleVel  = -transform.localScale / 0.5f;
-
-			// test score count
+		}
+		else if( other.gameObject.name == "basket" ) {
+			// If ohter is basket, add score then shrink it
 			ScoreSystem.Instance.addScore( ScoreLove, ScoreMoney );
+
+			mState			= STATE.GET;
+			mOutDelayTime	= 0.0f;
+
+			float time = 0.25f;
+			if( SpeedRate < 0.5f ) {
+				time *= 2.0f;
+			}
+			mOutScaleVel	= -transform.localScale / time;
 		}
-		else {
-			// If ohter is Player Unit, add score
-			// mijisou
-		}
+	}
+
+	//==========================================================================
+	// Public Functions
+	//==========================================================================
+	public void setHold()
+	{
+		mState = STATE.HOLD;
+	}
+	public void setDropType(DropSystem.DROP_OBJECT dropType)
+	{
+		mDropType = dropType;
 	}
 
 	//==========================================================================
@@ -107,6 +145,7 @@ public class DropUnit : MonoBehaviour
 	protected STATE mState = STATE.NONE;
 	protected float mOutDelayTime = 0.0f;
 	protected Vector3 mOutScaleVel;
+	protected DropSystem.DROP_OBJECT mDropType;
 	
 }
 

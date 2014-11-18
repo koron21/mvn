@@ -66,6 +66,12 @@ public class DropSystem : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		BasketRef = GameObject.Find("basket");
+		if( BasketRef == null ) {
+			// do Assert!
+			throw new UnityException();
+		}
+
 		// create generate flag
 		mEventNum = DropEventList.Length;
 		mbGeneratedEvent = new bool[ mEventNum ];
@@ -134,7 +140,73 @@ public class DropSystem : MonoBehaviour
 		Vector3 generatePos = new Vector3(GenerateWidth * posX_rate, GenerateHeight, GenerateDepth);
 
 		DropUnit obj = Instantiate(DropUnitPrefabs[(int)objectType]) as DropUnit;
+		obj.setDropType(objectType);
 		obj.transform.position = generatePos;
+	}
+
+	public void generateDropInBasket(DROP_OBJECT objectType, int height)
+	{
+		const int BASKET_NUM = 8;
+
+		if( objectType == DROP_OBJECT.COIN ) {
+			return;
+		}
+
+		if( mBasketCount == 0 ) {
+			mBasketRandPos = new int[BASKET_NUM];
+			for(int i=0; i<BASKET_NUM; i++) {
+				mBasketRandPos[i] = i;
+			}
+
+			// tekitou shuffle
+			for(int i=0; i<BASKET_NUM; i++) {
+				int j = Random.Range(0, BASKET_NUM);
+				int temp = mBasketRandPos[j];
+				mBasketRandPos[j] = mBasketRandPos[i];
+				mBasketRandPos[i] = temp;
+			}
+		}
+
+		DropUnit obj = Instantiate(DropUnitPrefabs[(int)objectType]) as DropUnit;
+		obj.setHold();
+		obj.transform.parent = BasketRef.transform;
+		//obj.transform.localScale *= 0.5f;
+
+		Vector3 pos = new Vector3(0.0f, 0.0f, 0.0f);
+		float x_range = 0.9f;
+		pos.x = -(x_range * (0.5f - 0.05f)) 
+				+ (x_range * ((float)mBasketRandPos[mBasketCount] / (float)(BASKET_NUM-1) - 0.05f)) 
+				+ Random.Range(-x_range * 0.05f, x_range * 0.05f);
+		pos.y = 0.05f + 0.02f * ((float)mBasketHeight);
+		pos.z = 0.0f;
+	
+		if( objectType == DROP_OBJECT.HEART ) {
+			// heart dekai kara shrink
+			obj.transform.localScale *= 0.8f;
+		}
+		if( objectType == DROP_OBJECT.COIN
+		   || objectType == DROP_OBJECT.APPLE 
+		   || objectType == DROP_OBJECT.RICE )
+		{
+			pos.y -= 0.05f;
+		}
+
+		obj.transform.localPosition = pos;
+		// height ni oujite seigen kaketa houga iikamo
+		obj.transform.Rotate(Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f), Random.Range(0.0f, 360.0f));
+
+		// Count Drop Object In Basket
+		if( objectType != DROP_OBJECT.COIN ) {
+			mBasketCount++;
+			if( mBasketCount >= BASKET_NUM ) {
+				mBasketHeight++;
+				mBasketCount = 0;
+
+				if( mBasketHeight > 10 ) {
+					mBasketHeight = 10;
+				}
+			}
+		}
 	}
 
 
@@ -167,6 +239,9 @@ public class DropSystem : MonoBehaviour
 	//! Drop Generate Event Data
 	public Event[] DropEventList = new Event[2];
 
+	//! Basket Ref
+	public GameObject BasketRef = null;
+
 	//==========================================================================
 	// Private Member Variables
 	//==========================================================================
@@ -180,6 +255,11 @@ public class DropSystem : MonoBehaviour
 	private float mGenTime = 0.0f;
 	private float mMaxRank = 100.0f;
 	private int mDropCount = 0;
+
+	// basket control
+	private int mBasketCount = 0;
+	private int mBasketHeight = 0;
+	private int[] mBasketRandPos;
 }
 
 //==============================================================================
