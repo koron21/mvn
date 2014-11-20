@@ -1,114 +1,105 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PatternAnimation : MonoBehaviour
 {
-    public float AnimationSpeed
-    {
-        get { return animationSpeed; }
-    }
-    private float animationSpeed;
+    public event Action OnStart;
+    public event Action OnEnd;
 
-    public AnimationCurve legAnimationCurve;
-    public float legAnimationLength;
+    public float length;
+    public bool loop;
+    public float coolTimeMin;
+    public float coolTimeMax;
 
-    private float legAnimationTimer;
+    private float clipLength;
+    private Transform[] clips;
+    private float timer;
+    private int index;
+    private bool isPlaying;
+    private float coolTime;
 
-    // reference
-    private Transform leg;
-    private Transform[] legParts;
-
-    private Transform eyes;
-    private Transform[] eyesNormal;
-    private Transform[] eyesReaction;
-
-    // Use this for initialization
     void Start()
     {
-        // default initializer
-        animationSpeed = 1.0f;
-        if (legAnimationLength <= 0.0f)
-            legAnimationLength = 1.0f;
-
-        // find legs, and animation parts
-        leg = transform.FindChild("legs");
-        if (leg)
+        clips = new Transform[transform.childCount];
+        for (int i = 0; i < transform.childCount; i ++)
         {
-            legParts = new Transform[leg.childCount];
-            for (int i = 0; i < leg.childCount; i ++)
-            {
-                legParts[i] = leg.GetChild(i);
-            }
+            clips[i] = transform.GetChild(i);
+            if (clips[i].renderer == null)
+                Debug.LogError(clips[i].name + "is null");
+            else 
+                clips[i].renderer.enabled = false;
         }
+        clipLength = length / (float)clips.Length;
+        index = 0;
+        clips[0].renderer.enabled = true;
+    }
 
-        // find eyes
-        eyes = transform.FindChild("eyes");
-        if (eyes)
-        {
-            // normal
-            Transform t = eyes.FindChild("normal");
-            if (t)
-            {
-                eyesNormal = new Transform[t.childCount];
-                for (int i = 0; i < t.childCount; i++ )
-                {
-                    eyesNormal[i] = t.GetChild(i);
-                }
-            }
-
-            // reaction
-            t = eyes.FindChild("reaction");
-            if (t)
-            {
-                eyesReaction = new Transform[t.childCount];
-                for (int i = 0; i < t.childCount; i ++)
-                {
-                    eyesReaction[i] = t.GetChild(i);
-                }
-            }
-        }
-   }
-    
-    // Update is called once per frame
     void Update()
     {
-        advanceTimer(ref legAnimationTimer, legAnimationLength);
-        pickLegPattern();
-    }
-
-    public void SetAnimationSpeed(float value)
-    { 
-        if (value <= -5.0f)
-            value = -5.0f;
-        if (value >= 5.0f)
-            value = 5.0f;
-        
-        animationSpeed = value;
-    }
-
-    void advanceTimer(ref float timer, float period)
-    {
-        timer += Time.deltaTime * animationSpeed;
-    }
-
-    void pickLegPattern()
-    {
-        foreach(Transform t in legParts)
+        if (isPlaying)
         {
-            //t.gameObject.SetActive(false);
-            t.renderer.enabled = false;
-        }
+            timer += Time.deltaTime;
 
-        float ratio = legAnimationTimer / legAnimationLength;
-        float rMod = legAnimationCurve.Evaluate(ratio);
-        int index = (int)(legParts.Length * rMod) % legParts.Length;
-        //legParts[index].gameObject.SetActive(true);
-        legParts[index].renderer.enabled = true;
+            if (clips.Length == 0 || length <= 0)
+                return;
+
+            if (timer >= clipLength)
+            {
+                timer = 0.0f;
+                clips[index].renderer.enabled = false;
+                index ++;
+                if (index == clips.Length)
+                {
+                    index = 0;
+                    coolTime = UnityEngine.Random.Range(coolTimeMin, coolTimeMax);
+                    timer = -coolTime;
+                    if (!loop)
+                    {
+                        isPlaying = false;
+                        if (OnEnd != null)
+                            OnEnd();
+                    }
+                }
+                clips[index].renderer.enabled = true;
+            }
+        }
     }
 
-    int pickPattern(float ratio, int patternNo)
+    public void Play()
     {
-        float rMod = legAnimationCurve.Evaluate(ratio);
-        return Mathf.RoundToInt(patternNo * rMod);
+        if (OnStart != null)
+            OnStart();
+        isPlaying = true;
+    }
+
+    public void Pause()
+    {
+        isPlaying = false;
+    }
+
+    public void Stop()
+    {
+        isPlaying = false;
+        index = 0;
+    }
+
+    public void Restart()
+    {
+        if (OnStart != null)
+            OnStart();
+        isPlaying = true;
+        index = 0;
+    }
+
+    IEnumerator callEnd()
+    {
+        yield return new WaitForSeconds(coolTime);
+        isPlaying = false;
+        if (OnEnd != null)
+            OnEnd();
     }
 }
+
+
+
