@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ScoreMoney: 0
-  ScoreLove: 0
+  ScoreLove: 10
   ScoreOther: 100
   SpeedRate: 1
   RotationGoal: {x: 70, y: 90, z: 0}

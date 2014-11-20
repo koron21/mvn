@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1245acd52ae44948d8a483f9be1c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreMoney: 10000
+  ScoreMoney: 100
   ScoreLove: 0
   ScoreOther: 0
   SpeedRate: .25

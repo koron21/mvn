@@ -5,7 +5,6 @@ using System.Collections;
 public class Player : MonoBehaviour
 {
     public float speed = 3.0F;
-    public bool linkAnimationSpeedWithMotion;
 
     // reference
     private CharacterController controller;
@@ -14,6 +13,10 @@ public class Player : MonoBehaviour
     private GameObject aichan;
     private GameObject basket;
 
+    private AnimationCtrl bunbunAnimation;
+    private AnimationCtrl aichanAnimation;
+
+    
     // Use this for initialization
     void Start()
     {
@@ -21,6 +24,13 @@ public class Player : MonoBehaviour
         gameInput = FindObjectOfType<GameInput>();
         bunbun = transform.FindChild("bunbun").gameObject;
         aichan = transform.FindChild("aichan").gameObject;
+
+        bunbunAnimation = bunbun.GetComponent<AnimationCtrl>();
+        aichanAnimation = aichan.GetComponent<AnimationCtrl>();
+
+        bunbunAnimation.Play(AnimationCtrl.AnimationNo.Leg);
+        bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
+        aichanAnimation.Play(AnimationCtrl.AnimationNo.Leg);
     }
 
     // Update is called once per frame
@@ -31,16 +41,7 @@ public class Player : MonoBehaviour
         float curSpeed = speed * gameInput.GetStick();
         controller.SimpleMove(forward * curSpeed);
 
-        // animation
-        if (linkAnimationSpeedWithMotion)
-        {
-            bunbun.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick1()));
-            aichan.SendMessage("SetAnimationSpeed", Mathf.Abs(gameInput.GetStick2()));
-        }
-        else 
-        {   
-            bunbun.SendMessage("SetAnimationSpeed", 1.0f);
-            aichan.SendMessage("SetAnimationSpeed", 1.0f);
-        }
+        if (gameInput.GetStick1() * gameInput.GetStick2() < 0)
+            bunbunAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
     }
 }

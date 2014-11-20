@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f214caefd8d3047a6b2589c84420bdfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreMoney: 500
+  ScoreMoney: 5
   ScoreLove: 0
   ScoreOther: 0
   SpeedRate: 1
