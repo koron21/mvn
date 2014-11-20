@@ -56,6 +56,7 @@ MonoBehaviour:
     InvokeTime: 0
   - EventPrefab: {fileID: 11400000, guid: 7288ed943af48424c93fbc06531f2fe8, type: 2}
     InvokeTime: 6
+  BasketRef: {fileID: 0}
   Rank: 0
 --- !u!1001 &100100000
 Prefab:

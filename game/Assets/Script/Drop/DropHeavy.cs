@@ -11,6 +11,10 @@ public class DropHeavy : DropUnit
 	{
 		base.Start();
 
+		if( mState == STATE.HOLD ) {
+			return;
+		}
+
 		if( Random.Range(0,2) == 1 ) {
 			// gyaku muki ni rakka saseru
 			transform.localEulerAngles = -transform.localEulerAngles;
