@@ -11,6 +11,13 @@ public class SoundManager : MonoBehaviour
 		public AudioClip Resource;
 	};
 
+	class SoundPlay
+	{
+		public float LeftLength;
+		public float Volume;
+		public bool isUsed;
+	};
+
 	//==========================================================================
 	// Accessor
 	//==========================================================================
@@ -40,7 +47,16 @@ public class SoundManager : MonoBehaviour
 		mAudioSource = GetComponent<AudioSource>();
 		for(int i=0; i<SoundList.Length; i++) {
 			mSoundMap.Add( SoundList[i].Name, SoundList[i] );
-			mPlayingSoundMap.Add( SoundList[i].Name, new List<float>() );
+			mPlayingSoundMap.Add( SoundList[i].Name, new List<SoundPlay>() );
+
+			List<SoundPlay> playList = mPlayingSoundMap[ SoundList[i].Name ];
+			for(int j=0; j<16; j++) {
+				SoundPlay play = new SoundPlay();
+				play.LeftLength = 0.0f;
+				play.isUsed = false;
+				play.Volume = 1.0f * Mathf.Pow (0.5f, j);
+				playList.Add( play );
+			}
 		}
 	}
 	
@@ -61,12 +77,14 @@ public class SoundManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		foreach( KeyValuePair<string, List<float> > pair in mPlayingSoundMap ) {
-			for(int i=0; i<pair.Value.Count; i++) {
-				pair.Value[i] -= Time.deltaTime;
-				if( pair.Value[i] <= 0.0f ) {
-					pair.Value.RemoveAt( i );
-					i--;
+		foreach( KeyValuePair<string, List<SoundPlay> > pair in mPlayingSoundMap ) {
+			foreach( SoundPlay play in pair.Value ) {
+				if( play.isUsed == false ) {
+					continue;
+				}
+				play.LeftLength -= Time.deltaTime;
+				if( play.LeftLength <= 0.0f ) {
+					play.isUsed = false;
 				}
 			}
 		}
@@ -86,17 +104,23 @@ public class SoundManager : MonoBehaviour
 			return;
 		}
 
-		List<float> playingList = mPlayingSoundMap[name];
+		List<SoundPlay> playingList = mPlayingSoundMap[name];
 		float volume = 1.0f;
-		int count = 0;
-		while( count < playingList.Count ) {
-			volume *= 0.5f;
-			count++;
+		bool bFound = false;
+		foreach(SoundPlay play in playingList) {
+			if( play.isUsed == false ) {
+				play.isUsed = true;
+				play.LeftLength = 0.1f;
+				volume = play.Volume;
+				bFound = true;
+				break;
+			}
+		}
+		if( bFound == false ) {
+			return;
 		}
 		
 		mAudioSource.PlayOneShot( clip, volume );
-
-		playingList.Add(0.1f);
 	}
 	
 	
@@ -112,5 +136,5 @@ public class SoundManager : MonoBehaviour
 	private static SoundManager mpInstance;
 	private AudioSource mAudioSource;
 	private Dictionary<string, SoundInfo> mSoundMap = new Dictionary<string, SoundInfo>();
-	private Dictionary<string, List<float> > mPlayingSoundMap = new Dictionary<string, List<float> >();
+	private Dictionary<string, List<SoundPlay> > mPlayingSoundMap = new Dictionary<string, List<SoundPlay> >();
 }
