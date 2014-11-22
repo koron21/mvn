@@ -74,7 +74,7 @@ public class Fade : MonoBehaviour {
 			alpha = 1.0f - (float)mTimer * (1.0f / (float)mLimit);
 			if(mTimer > mLimit){
 				mFadeState = FadeState.NONE;
-				alpha = 1.0f;
+				alpha = 0.0f;
 			}
 			this.guiTexture.color = new Color(mFadeColor.r, mFadeColor.g, mFadeColor.b, alpha);
 			break;

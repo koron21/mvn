@@ -39,6 +39,7 @@ public class DropUnit : MonoBehaviour
 		//mVelocity = new Vector3(0.0f, -DropSystem.Instance.FallVelocity, 0.0f);
 		mVelocity = new Vector3(0.0f, 0.0f, 0.0f);
 		mState    = STATE.FALL;
+		mGameRef  = FindObjectOfType<Game>();
 	}
 	
 	// Update is called once per frame
@@ -78,6 +79,9 @@ public class DropUnit : MonoBehaviour
 		if( mState != STATE.FALL ) {
 			return;
 		}
+		if( mGameRef && mGameRef.IsInGame == false ) {
+			return;
+		}
 
 		// If other is floor, bounce drop object then shrink it
 		if( other.gameObject.name == "Ground" ) {
@@ -100,7 +104,7 @@ public class DropUnit : MonoBehaviour
 			mOutScaleVel	= -transform.localScale / time;
 
 			// Request get se
-			SoundManager.Instance.request( GetSEName );
+			SoundManager.Instance.requestSe( GetSEName );
 		}
 	}
 
@@ -152,6 +156,8 @@ public class DropUnit : MonoBehaviour
 	protected float mOutDelayTime = 0.0f;
 	protected Vector3 mOutScaleVel;
 	protected DropSystem.DROP_OBJECT mDropType;
+
+	private Game mGameRef;
 	
 }
 

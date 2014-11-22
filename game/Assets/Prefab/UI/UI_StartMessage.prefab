@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -44,8 +44,8 @@ MonoBehaviour:
   MIN_RATE: .5
   ENLARGE_ANIM_TIME: .200000003
   SHRINK_ANIM_TIME: .150000006
-  WAIT_TIME: 1.5
-  FADE_TIME: .200000003
+  WAIT_TIME: 1
+  FADE_TIME: .100000001
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -93,7 +93,7 @@ public class SoundManager : MonoBehaviour
 	//==========================================================================
 	// Public Member Functions
 	//==========================================================================
-	public void request(string name)
+	public void requestSe(string name)
 	{
 		if( mSoundMap.ContainsKey(name) == false ) {
 			return;
@@ -121,6 +121,26 @@ public class SoundManager : MonoBehaviour
 		}
 		
 		mAudioSource.PlayOneShot( clip, volume );
+	}
+
+	public void requestStream(string name)
+	{
+		if( mSoundMap.ContainsKey(name) == false ) {
+			return;
+		}
+		
+		AudioClip clip = mSoundMap[name].Resource;
+		if(clip == null) {
+			return;
+		}
+
+		mAudioSource.clip = clip;
+		mAudioSource.Play();
+	}
+
+	public void stopStream()
+	{
+		mAudioSource.Stop();
 	}
 	
 	
