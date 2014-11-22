@@ -98,6 +98,9 @@ public class DropUnit : MonoBehaviour
 				time *= 2.0f;
 			}
 			mOutScaleVel	= -transform.localScale / time;
+
+			// Request get se
+			SoundManager.Instance.request( GetSEName );
 		}
 	}
 
@@ -137,6 +140,9 @@ public class DropUnit : MonoBehaviour
 
 	//! Speed Adjustment
 	public float SpeedRate = 1.0f;
+
+	//! Get SE Name
+	public string GetSEName;
 
 	//==========================================================================
 	// Private Member Variables
