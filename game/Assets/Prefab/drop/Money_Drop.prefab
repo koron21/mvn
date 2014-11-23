@@ -175,6 +175,7 @@ MonoBehaviour:
   ScoreOther: 0
   SpeedRate: .25
   GetSEName: get_b_01
+  FallSEName: fall_02
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

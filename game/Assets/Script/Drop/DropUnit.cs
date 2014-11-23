@@ -40,6 +40,8 @@ public class DropUnit : MonoBehaviour
 		mVelocity = new Vector3(0.0f, 0.0f, 0.0f);
 		mState    = STATE.FALL;
 		mGameRef  = FindObjectOfType<Game>();
+
+		mbPlayFallSe = false;
 	}
 	
 	// Update is called once per frame
@@ -56,6 +58,18 @@ public class DropUnit : MonoBehaviour
 		transform.localPosition += mVelocity * Time.deltaTime * SpeedRate;
 
 		mVelocity.y -= DropSystem.Instance.FallVelocity * Time.deltaTime;
+
+		// call fall se
+		if( mGameRef.IsInGame == true ) {
+			float checkHeight = 11.0f;
+			if( FallSEName == "fall_02" ) {
+				checkHeight = 11.3f;
+			}
+			if( mbPlayFallSe == false && transform.localPosition.y < checkHeight ) {
+				SoundManager.Instance.requestSe( FallSEName );
+				mbPlayFallSe = true;
+			}
+		}
 
 		if( mState == STATE.OUT || mState == STATE.GET ) {
 			mOutDelayTime -= Time.deltaTime;
@@ -148,6 +162,9 @@ public class DropUnit : MonoBehaviour
 	//! Get SE Name
 	public string GetSEName;
 
+	//! Fall SE Name
+	public string FallSEName;
+
 	//==========================================================================
 	// Private Member Variables
 	//==========================================================================
@@ -156,8 +173,8 @@ public class DropUnit : MonoBehaviour
 	protected float mOutDelayTime = 0.0f;
 	protected Vector3 mOutScaleVel;
 	protected DropSystem.DROP_OBJECT mDropType;
-
 	protected Game mGameRef;
+	private bool mbPlayFallSe = false;
 	
 }
 

@@ -133,6 +133,7 @@ MonoBehaviour:
   ScoreOther: 200
   SpeedRate: 1
   GetSEName: get_c_01
+  FallSEName: fall_01
   RotationGoal: {x: 160, y: 90, z: 0}
   RotationGoalInv: {x: 200, y: 270, z: 0}
   RotationTime: 4

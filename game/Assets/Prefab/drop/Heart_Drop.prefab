@@ -133,6 +133,7 @@ MonoBehaviour:
   ScoreOther: 0
   SpeedRate: .150000006
   GetSEName: get_d_01
+  FallSEName: fall_02
   ScaleRate: 1.20000005
   ScaleTime: .75
   IntervalTime: 1

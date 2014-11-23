@@ -24,8 +24,6 @@ public class DropHeavy : DropUnit
 		mRotVel  = new Vector3(0.0f, 0.0f, 0.0f);
 		mRotInit = transform.localEulerAngles;
 		mRotAcc  = (RotationGoal - mRotInit) * 2.0f / (RotationTime * RotationTime);
-
-		mbPlayFallSe = false;
 	}
 	
 	// Update is called once per frame
@@ -40,14 +38,6 @@ public class DropHeavy : DropUnit
 
 				mRotTimer += Time.deltaTime;
 				mRotVel += mRotAcc * Time.deltaTime;
-			}
-
-			// call fall se
-			if( mGameRef.IsInGame == true ) {
-				if( mbPlayFallSe == false && transform.localPosition.y < 11.0f ) {
-					SoundManager.Instance.requestSe("fall_01");
-					mbPlayFallSe = true;
-				}
 			}
 		}
 		else if( mState == STATE.OUT ) {
@@ -106,5 +96,4 @@ public class DropHeavy : DropUnit
 	private Vector3 mRotInit;
 	private Vector3 mRotAcc;
 	private float mRotTimer = 0.0f;
-	private bool mbPlayFallSe = false;
 }

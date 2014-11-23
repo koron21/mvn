@@ -111,6 +111,8 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: aa0339369af0941de90a1f48735b6f80, type: 3}
   - Name: bgm
     Resource: {fileID: 8300000, guid: e391c1a6e27b54e87a78e44dfaf645fe, type: 3}
+  - Name: fall_02
+    Resource: {fileID: 8300000, guid: 09b60566a356e4e5f84f39edbdd231a7, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
