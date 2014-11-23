@@ -58,12 +58,12 @@ public class TitleCamera : MonoBehaviour {
 		mQuakeStartPos = this.transform.position;
 	}
 
-	public void startLookAt(Vector3 startLookAt, Vector3 endLookAt, float lookAtSpeed, int waitTime){
+	public void startLookAt(Vector3 endLookAt, float lookAtSpeed, int waitTime){
 		if(mCameraState != CameraState.NONE){
 			return;
 		}
 		mCameraState = CameraState.LOOKAT;
-		mLookAt = startLookAt;
+		mLookAt = this.transform.position + this.transform.forward * 5.0f;
 		mEndLookAt = endLookAt;
 		mLookAtSpeed = lookAtSpeed;
 		mLookAtWait = waitTime;

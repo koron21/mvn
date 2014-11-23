@@ -7,6 +7,7 @@ public class TitleObject : MonoBehaviour {
 		STATE_NONE,
 		STATE_FALL,
 		STATE_UP_DOWN,
+		STATE_KEMURI,
 	};
 
 	float mFallSpeed;
@@ -14,6 +15,15 @@ public class TitleObject : MonoBehaviour {
 	float mPower;
 	float mSpeed;
 	float mTheta;
+
+	int mEndFrame;
+	float mWaveLength;
+	float mWaveSpeed;
+	Vector3 mStartPos;
+	Vector3 mKemuriVec;
+
+
+	int mTimer;
 
 	OBJECT_STATE mObjectState;
 
@@ -44,6 +54,21 @@ public class TitleObject : MonoBehaviour {
 		mSpeed = speed;
 		mTheta = 0.0f;
 		mObjectState = OBJECT_STATE.STATE_UP_DOWN;
+	}
+
+	public void setupKemuri(int frame, float speed, float waveSpeed, float wave, Vector3 vec){
+		if(mObjectState != OBJECT_STATE.STATE_NONE){
+			return;
+		}
+		mTheta = 0;
+		mTimer = 0;
+		mEndFrame = frame;
+		mSpeed = speed;
+		mWaveSpeed = waveSpeed;
+		mWaveLength = wave;
+		mStartPos = this.transform.position;
+		mKemuriVec = vec.normalized;
+		mObjectState = OBJECT_STATE.STATE_KEMURI;
 	}
 
 	// Use this for initialization
@@ -77,6 +102,20 @@ public class TitleObject : MonoBehaviour {
 					mObjectState = OBJECT_STATE.STATE_NONE;
 				}
 				this.gameObject.transform.position = new Vector3(pos.x, posY, pos.z);
+			}
+			break;
+		case OBJECT_STATE.STATE_KEMURI:
+			{
+				++mTimer;
+				mTheta += mWaveSpeed;
+				Vector3 nowPos = mStartPos + mTheta * mKemuriVec;
+//				Vector3 wave = Vector3.Cross(mKemuriVec, new Vector3(0.0f, 0.0f, 1.0f));
+//				nowPos = nowPos + wave * Mathf.Sin(mTheta) * mWaveLength;
+				nowPos = nowPos + Mathf.Sin(mTheta) * mWaveLength * new Vector3(1.0f, 0.0f, 0.0f);
+				this.gameObject.transform.position = nowPos;
+				if(mTimer > mEndFrame){
+					mObjectState = OBJECT_STATE.STATE_NONE;
+				}
 			}
 			break;
 		}

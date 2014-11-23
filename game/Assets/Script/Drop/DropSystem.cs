@@ -49,7 +49,7 @@ public class DropSystem : MonoBehaviour
 			mpInstance = this;
 		}
 		else {
-			// Assert kaketai
+			throw new UnityException();
 		}
 	}
 
@@ -68,7 +68,10 @@ public class DropSystem : MonoBehaviour
 	{
 		BasketRef = GameObject.Find("basket");
 		if( BasketRef == null ) {
-			// do Assert!
+			throw new UnityException();
+		}
+		mGameRef = FindObjectOfType<Game>();
+		if( mGameRef == null ) {
 			throw new UnityException();
 		}
 
@@ -120,7 +123,7 @@ public class DropSystem : MonoBehaviour
 			mDropCount++;
 		}
 
-		Rank += Time.deltaTime;
+		Rank += mMaxRank / mGameRef.stageTime / 60.0f;
 		if( Rank >= mMaxRank ) {
 			Rank = mMaxRank;
 		}
@@ -260,6 +263,8 @@ public class DropSystem : MonoBehaviour
 	private int mBasketCount = 0;
 	private int mBasketHeight = 0;
 	private int[] mBasketRandPos;
+
+	private Game mGameRef;
 }
 
 //==============================================================================

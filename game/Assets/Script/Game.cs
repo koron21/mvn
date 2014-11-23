@@ -56,6 +56,7 @@ public class Game : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+		fade.setFadeColor(new Color(1.0f, 1.0f, 1.0f, 1.0f));
 		fade.startFadeOut(60);
 
 		timer = 0.0f;
