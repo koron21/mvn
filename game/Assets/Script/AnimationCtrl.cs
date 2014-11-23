@@ -20,7 +20,7 @@ public class AnimationCtrl : MonoBehaviour
     void Start()
     {
         // eye animation events
-        int start = (int)AnimationNo.Eye0;
+        int start = (int)AnimationNo.Blink;
         int end = Mathf.Min((int)AnimationNo.Eye2);
         for (int i = start; i <= end; i ++)
         {
@@ -30,19 +30,19 @@ public class AnimationCtrl : MonoBehaviour
             int j = i;
             animationClips[j].OnStart += () =>
             {
-                DisableOthers((AnimationNo)j);
+                StopAndDisableOthers((AnimationNo)j);
             };
 
             animationClips[j].OnEnd += () =>
             {
-                DisableOthers(AnimationNo.Blink);
+                StopAndDisableOthers(AnimationNo.Blink);
             };
         }
 
-        DisableOthers(AnimationNo.Blink);
+        StopAndDisableOthers(AnimationNo.Blink);
     }
     
-    void DisableOthers(AnimationNo self)
+    void StopAndDisableOthers(AnimationNo self)
     {
         for (int i = (int)AnimationNo.Blink; i <= (int)AnimationNo.Eye2; i ++)
         {
@@ -50,7 +50,10 @@ public class AnimationCtrl : MonoBehaviour
                 break;
 
             if (i != (int)self)
+            {
+                animationClips[i].Stop();
                 animationClips[i].gameObject.SetActive(false);
+            }
         }
 
         animationClips[(int)self].gameObject.SetActive(true);

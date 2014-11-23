@@ -3533,9 +3533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: .5
-  loop: 0
-  coolTimeMin: .300000012
-  coolTimeMax: .300000012
+  loop: 1
+  coolTimeMin: 0
+  coolTimeMax: 0
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3548,9 +3548,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: .5
-  loop: 0
-  coolTimeMin: .300000012
-  coolTimeMax: .300000012
+  loop: 1
+  coolTimeMin: 0
+  coolTimeMax: 0
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3563,9 +3563,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: .5
-  loop: 0
-  coolTimeMin: .300000012
-  coolTimeMax: .300000012
+  loop: 1
+  coolTimeMin: 0
+  coolTimeMax: 0
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3623,9 +3623,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   length: .5
-  loop: 0
-  coolTimeMin: .300000012
-  coolTimeMax: .300000012
+  loop: 1
+  coolTimeMin: 0
+  coolTimeMax: 0
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1

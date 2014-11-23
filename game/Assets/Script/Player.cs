@@ -69,6 +69,11 @@ public class Player : MonoBehaviour
             bunbunAnimation.PlayRandom(bunbunList);
             aichanAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
         }
+        else
+        {
+            bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
+            aichanAnimation.Play(AnimationCtrl.AnimationNo.Blink);
+        }
 
         float stickOld = gameInput.GetStickOld();
         if (Mathf.Abs(stick - stickOld) >= dustThreshold)

@@ -108,7 +108,9 @@ public class PatternAnimation : MonoBehaviour
 
     public void Stop()
     {
+        timer = 0;
         isPlaying = false;
+        isCooling = false;
         index = 0;
     }
 
