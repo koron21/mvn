@@ -4,7 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
+    public Bounds bounds;
     public float speed = 3.0F;
+    public float dustThreshold = 0.3f;
 
     // reference
     private CharacterController controller;
@@ -16,7 +18,9 @@ public class Player : MonoBehaviour
     private AnimationCtrl bunbunAnimation;
     private AnimationCtrl aichanAnimation;
 
-    
+    private EffectCtrl bunbunEffect;
+    private EffectCtrl aichanEffect;
+      
     // Use this for initialization
     void Start()
     {
@@ -31,6 +35,10 @@ public class Player : MonoBehaviour
         bunbunAnimation.Play(AnimationCtrl.AnimationNo.Leg);
         bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
         aichanAnimation.Play(AnimationCtrl.AnimationNo.Leg);
+        aichanAnimation.Play(AnimationCtrl.AnimationNo.Blink);
+
+        bunbunEffect = bunbun.transform.FindChild("effect").GetComponent<EffectCtrl>();
+        aichanEffect = aichan.transform.FindChild("effect").GetComponent<EffectCtrl>();
     }
 
     // Update is called once per frame
@@ -38,10 +46,23 @@ public class Player : MonoBehaviour
     {
         // translation
         Vector3 forward = transform.TransformDirection(Vector3.right);
-        float curSpeed = speed * gameInput.GetStick();
-        controller.SimpleMove(forward * curSpeed);
+        float stick = gameInput.GetStick();
+        float curSpeed = speed * stick;
+        Vector3 end = transform.position + forward * curSpeed * Time.deltaTime;
+        if (bounds.Contains(end))
+            controller.SimpleMove(forward * curSpeed);
 
         if (gameInput.GetStick1() * gameInput.GetStick2() < 0)
+        {
             bunbunAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
+            aichanAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
+        }
+
+        float stickOld = gameInput.GetStickOld();
+        if (Mathf.Abs(stick - stickOld) >= dustThreshold)
+        {
+            bunbunEffect.Play(EffectCtrl.Effect.Dust);
+            aichanEffect.Play(EffectCtrl.Effect.Dust);
+        }
     }
 }

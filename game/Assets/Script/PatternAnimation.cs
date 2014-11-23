@@ -32,7 +32,7 @@ public class PatternAnimation : MonoBehaviour
         }
         clipLength = length / (float)clips.Length;
         index = 0;
-        clips[0].renderer.enabled = true;
+        OnStart += () => clips[0].renderer.enabled = true;
     }
 
     void Update()
@@ -56,9 +56,8 @@ public class PatternAnimation : MonoBehaviour
                     timer = -coolTime;
                     if (!loop)
                     {
-                        isPlaying = false;
-                        if (OnEnd != null)
-                            OnEnd();
+                        StartCoroutine(callEnd());
+                        return;
                     }
                 }
                 clips[index].renderer.enabled = true;

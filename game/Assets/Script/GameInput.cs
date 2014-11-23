@@ -28,6 +28,7 @@ public class GameInput : MonoBehaviour
     // Info - Read Only
     public string[] joystickNames;
     public float stick;
+    public float stickOld;
 
     public float stick1;
     [Range(1.0f, 2.0f)]
@@ -72,6 +73,7 @@ public class GameInput : MonoBehaviour
 
     void Update()
     {
+        stickOld = stick;
         stick = GetStick();
         stick1 = GetStick1();
         stick2 = GetStick2();
@@ -114,6 +116,11 @@ public class GameInput : MonoBehaviour
     {
         return GetStick(p1Settings.joystickAxisName,
                         p1Settings.keyboardAxisName);
+    }
+
+    public float GetStickOld()
+    {
+        return stickOld;
     }
 
     public float GetStick2()

@@ -11,14 +11,22 @@ public class AnimationCtrl : MonoBehaviour
         Blink,
         Eye0,
         Eye1,
-        Eye2
+        Eye2,
+
+        MAX
     }
 
     // Use this for initialization
     void Start()
     {
-        for (int i = (int)AnimationNo.Eye0; i <= (int)AnimationNo.Eye2; i ++)
+        // eye animation events
+        int start = (int)AnimationNo.Eye0;
+        int end = Mathf.Min((int)AnimationNo.Eye2);
+        for (int i = start; i <= end; i ++)
         {
+            if (animationClips.Length <= i)
+                break;
+
             int j = i;
             animationClips[j].OnStart += () =>
             {
@@ -30,12 +38,17 @@ public class AnimationCtrl : MonoBehaviour
                 DisableOthers(AnimationNo.Blink);
             };
         }
+
+        DisableOthers(AnimationNo.Blink);
     }
     
     void DisableOthers(AnimationNo self)
     {
         for (int i = (int)AnimationNo.Blink; i <= (int)AnimationNo.Eye2; i ++)
         {
+            if (animationClips.Length <= i)
+                break;
+
             if (i != (int)self)
                 animationClips[i].gameObject.SetActive(false);
         }
@@ -55,6 +68,7 @@ public class AnimationCtrl : MonoBehaviour
 
     public void Stop(AnimationNo no)
     {
+
         animationClips[(int)no].Stop();
     }
 
