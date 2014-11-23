@@ -132,6 +132,7 @@ MonoBehaviour:
   ScoreLove: 100
   ScoreOther: 0
   SpeedRate: .150000006
+  GetSEName: get_d_01
   ScaleRate: 1.20000005
   ScaleTime: .75
   IntervalTime: 1

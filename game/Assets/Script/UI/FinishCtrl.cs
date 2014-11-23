@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FinishCtrl : MonoBehaviour {
-
+public class FinishCtrl : MonoBehaviour
+{
 	//==========================================================================
 	// Unity Functions
 	//==========================================================================

@@ -132,6 +132,7 @@ MonoBehaviour:
   ScoreLove: 10
   ScoreOther: 100
   SpeedRate: 1
+  GetSEName: get_a_01
   RotationGoal: {x: 70, y: 90, z: 0}
   RotationGoalInv: {x: 70, y: 270, z: 0}
   RotationTime: 4

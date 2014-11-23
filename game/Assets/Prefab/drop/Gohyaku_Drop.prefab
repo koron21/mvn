@@ -132,6 +132,7 @@ MonoBehaviour:
   ScoreLove: 0
   ScoreOther: 0
   SpeedRate: 1
+  GetSEName: get_b_01
   RotateSpeed: 350
 --- !u!135 &13500000
 SphereCollider:
