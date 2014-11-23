@@ -33,7 +33,7 @@ public class GaugeCtrl : MonoBehaviour
 
 		// flash animation
 		float alpha = 0;
-		float maxAlpha = 0.35f;
+		float maxAlpha = 0.5f;
 		if( mTimer < (AddTime * 0.5f) ) {
 			alpha = 1.0f * mTimer / (AddTime * 0.5f);
 		}
