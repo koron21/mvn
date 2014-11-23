@@ -43,9 +43,11 @@ public class DropHeavy : DropUnit
 			}
 
 			// call fall se
-			if( mbPlayFallSe == false && transform.localPosition.y < 11.0f ) {
-				SoundManager.Instance.requestSe("fall_01");
-				mbPlayFallSe = true;
+			if( mGameRef.IsInGame == true ) {
+				if( mbPlayFallSe == false && transform.localPosition.y < 11.0f ) {
+					SoundManager.Instance.requestSe("fall_01");
+					mbPlayFallSe = true;
+				}
 			}
 		}
 		else if( mState == STATE.OUT ) {

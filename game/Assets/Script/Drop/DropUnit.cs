@@ -157,7 +157,7 @@ public class DropUnit : MonoBehaviour
 	protected Vector3 mOutScaleVel;
 	protected DropSystem.DROP_OBJECT mDropType;
 
-	private Game mGameRef;
+	protected Game mGameRef;
 	
 }
 
