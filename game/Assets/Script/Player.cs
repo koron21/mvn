@@ -32,13 +32,19 @@ public class Player : MonoBehaviour
         bunbunAnimation = bunbun.GetComponent<AnimationCtrl>();
         aichanAnimation = aichan.GetComponent<AnimationCtrl>();
 
+        bunbunEffect = bunbun.transform.FindChild("effect").GetComponent<EffectCtrl>();
+        aichanEffect = aichan.transform.FindChild("effect").GetComponent<EffectCtrl>();
+
+        StartCoroutine(StartRoutine());
+    }
+
+    IEnumerator StartRoutine()
+    {
+        yield return null;
         bunbunAnimation.Play(AnimationCtrl.AnimationNo.Leg);
         bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
         aichanAnimation.Play(AnimationCtrl.AnimationNo.Leg);
         aichanAnimation.Play(AnimationCtrl.AnimationNo.Blink);
-
-        bunbunEffect = bunbun.transform.FindChild("effect").GetComponent<EffectCtrl>();
-        aichanEffect = aichan.transform.FindChild("effect").GetComponent<EffectCtrl>();
     }
 
     // Update is called once per frame
@@ -54,7 +60,13 @@ public class Player : MonoBehaviour
 
         if (gameInput.GetStick1() * gameInput.GetStick2() < 0)
         {
-            bunbunAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
+            AnimationCtrl.AnimationNo[] bunbunList = 
+            {
+                AnimationCtrl.AnimationNo.Eye0,
+                AnimationCtrl.AnimationNo.Eye1,
+                AnimationCtrl.AnimationNo.Eye2
+            };
+            bunbunAnimation.PlayRandom(bunbunList);
             aichanAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
         }
 

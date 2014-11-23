@@ -41,12 +41,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystickNames: []
   stick: 0
+  stickOld: 0
   stick1: 0
   boost1: 0
   stick2: 0
   boost2: 0
   balance: 0
-  boostAmount: .100000001
+  boostAmount: .200000003
   boostTime: .5
   p1Settings:
     joystickAxisName: Player1-Joystick

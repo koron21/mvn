@@ -66,6 +66,18 @@ public class AnimationCtrl : MonoBehaviour
         animationClips[(int)no].Play();
     }
 
+    public void PlayRandom(AnimationNo[] list)
+    {
+        foreach(AnimationNo no in list)
+        {
+            if (animationClips[(int)no].IsPlaying)
+                return;
+        }
+
+        int rand = Random.Range(0, list.Length);
+        Play((AnimationNo)list[rand]);
+    }
+    
     public void Stop(AnimationNo no)
     {
 

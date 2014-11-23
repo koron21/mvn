@@ -12,11 +12,17 @@ public class PatternAnimation : MonoBehaviour
     public float coolTimeMin;
     public float coolTimeMax;
 
+    public bool IsPlaying
+    { 
+      get { return isPlaying; } 
+    }
+
     private float clipLength;
     private Transform[] clips;
     private float timer;
     private int index;
     private bool isPlaying;
+    private bool isCooling;
     private float coolTime;
 
     void Start()
@@ -44,6 +50,20 @@ public class PatternAnimation : MonoBehaviour
             if (clips.Length == 0 || length <= 0)
                 return;
 
+            if (isCooling)
+            {
+                if (timer < 0.0f)
+                    return;
+                else
+                {              
+                    isCooling = false;
+                    if (!loop)
+                        isPlaying = false;
+                    if (OnEnd != null)
+                        OnEnd();
+                }
+            }
+
             if (timer >= clipLength)
             {
                 timer = 0.0f;
@@ -53,12 +73,18 @@ public class PatternAnimation : MonoBehaviour
                 {
                     index = 0;
                     coolTime = UnityEngine.Random.Range(coolTimeMin, coolTimeMax);
-                    timer = -coolTime;
-                    if (!loop)
+                    if (coolTime > 0)
                     {
-                        StartCoroutine(callEnd());
-                        return;
+                        timer = -coolTime;
+                        isCooling = true;
                     }
+                    else if (!loop)
+                    {
+                        isPlaying = false;
+                    }
+
+                    if (!loop)
+                        return;
                 }
                 clips[index].renderer.enabled = true;
             }
@@ -67,6 +93,9 @@ public class PatternAnimation : MonoBehaviour
 
     public void Play()
     {
+        if (isPlaying)
+            return;
+
         if (OnStart != null)
             OnStart();
         isPlaying = true;
