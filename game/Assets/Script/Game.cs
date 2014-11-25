@@ -40,6 +40,8 @@ public class Game : MonoBehaviour
 	private GameObject startMes;
 	private GameObject finishMes;
 	private GameObject dropSystem;
+	private GameObject controllerInfo;
+	private GUIText    controllerInfoText;
 	private Fade       fade;
 
 	void Awake ()
@@ -48,6 +50,15 @@ public class Game : MonoBehaviour
 		dropSystem = GameObject.Find ("DropSystem");
 		startMes   = null;
 		finishMes  = null;
+
+		// controller info setting
+		controllerInfo = GameObject.Find ("ControllerInfo");
+		controllerInfoText = controllerInfo.GetComponent<GUIText>();
+		controllerInfoText.pixelOffset = new Vector2(Screen.width / 2,
+		                                   Screen.height / 2);
+		controllerInfoText.fontSize = (int)(70.0f * (float)Screen.width / 1280.0f);
+		controllerInfoText.color    = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+		controllerInfo.SetActive(false);
 
 		// hajimaru made ugokasanai
 		dropSystem.SetActive(false);
@@ -98,21 +109,55 @@ public class Game : MonoBehaviour
 
 	private void UpdatePreStart()
 	{
-		// wait for input start button
-
+		// wait for input space key
 		switch (phase) {
 		case 0:
 			if (fade.isEndMove()) {
-				timer = 0.0f;
+				controllerInfo.SetActive(true);
 				phase++;
 			}
 			break;
+
 		case 1:
-			timer += Time.deltaTime;
-			if (timer >= 1.0f) {
-				ChangeState(GAME_STATE.START);
+		{
+			Color temp = new Color(controllerInfoText.color.r, 
+			                       controllerInfoText.color.g, 
+			                       controllerInfoText.color.b, 
+			                       controllerInfoText.color.a);
+			temp.a += 1.0f * Time.deltaTime / 0.25f;
+			if (temp.a >= 1.0f) {
+				temp.a = 1.0f;
+				phase++;
+			}
+			controllerInfoText.color = temp;
+
+			break;
+		}
+
+		case 2:
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				phase++;
 			}
 			break;
+		
+		case 3:
+		{
+			Color temp = new Color(controllerInfoText.color.r, 
+			                       controllerInfoText.color.g, 
+			                       controllerInfoText.color.b, 
+			                       controllerInfoText.color.a);
+			temp.a -= 1.0f * Time.deltaTime / 0.5f;
+			if (temp.a <= 0.0f) {
+				temp.a = 0.0f;
+				
+				controllerInfo.SetActive(false);
+				ChangeState(GAME_STATE.START);
+			}
+			controllerInfoText.color = temp;
+
+			break;
+		}
+
 		}
 	}                     
 

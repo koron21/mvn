@@ -55,23 +55,34 @@ public class Player : MonoBehaviour
         float stick = gameInput.GetStick();
         float curSpeed = speed * stick;
         Vector3 end = transform.position + forward * curSpeed * Time.deltaTime;
-        if (bounds.Contains(end))
-            controller.SimpleMove(forward * curSpeed);
+
+		if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false )
+		{
+	        if (bounds.Contains(end))
+	            controller.SimpleMove(forward * curSpeed);
+		}
 
         if (gameInput.GetStick1() * gameInput.GetStick2() < 0)
         {
-            AnimationCtrl.AnimationNo[] bunbunList = 
-            {
-                AnimationCtrl.AnimationNo.Eye0,
-                AnimationCtrl.AnimationNo.Eye1,
-                AnimationCtrl.AnimationNo.Eye2
-            };
-            bunbunAnimation.PlayRandom(bunbunList);
-            aichanAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
+			if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false ) {
+				bunbun.GetComponent<PlayerCtrl>().doZukkoke();
+			}   
         }
-        else
-        {
-            bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
+
+		if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke )
+		{
+			AnimationCtrl.AnimationNo[] bunbunList = 
+			{
+				AnimationCtrl.AnimationNo.Eye0,
+				AnimationCtrl.AnimationNo.Eye1,
+				AnimationCtrl.AnimationNo.Eye2
+			};
+			bunbunAnimation.PlayRandom(bunbunList);
+			aichanAnimation.Play(AnimationCtrl.AnimationNo.Eye0);
+		}
+		else
+		{
+			bunbunAnimation.Play(AnimationCtrl.AnimationNo.Blink);
             aichanAnimation.Play(AnimationCtrl.AnimationNo.Blink);
         }
 
