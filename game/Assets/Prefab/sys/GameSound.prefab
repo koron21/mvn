@@ -113,6 +113,12 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: e391c1a6e27b54e87a78e44dfaf645fe, type: 3}
   - Name: fall_02
     Resource: {fileID: 8300000, guid: 09b60566a356e4e5f84f39edbdd231a7, type: 3}
+  - Name: title_bgm
+    Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
+  - Name: oyakata_01
+    Resource: {fileID: 8300000, guid: bb27db86cd97c46e58449bd63ea1f784, type: 3}
+  - Name: oyakata_01
+    Resource: {fileID: 8300000, guid: a25b92876f8f9446c8a1ca5fe5d4ebf1, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

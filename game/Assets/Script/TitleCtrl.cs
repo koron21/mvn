@@ -5,23 +5,14 @@ public class TitleCtrl : MonoBehaviour {
 
 	public Fade mFade;
 
-	public TitleCamera mTitleCamera; 
-	public TitleObject mTakushima;
-	public TitleObject mSphere;
+	public GameObject mTitleUI;
+	public TitleCamera mTitleCamera;
+	public GameObject mSphere;
 	public TitleObject mSphereBase;
 	public TitleObject mLamp;
 	public TitleObject mLampKemuri;
 
-	public GameObject mBooks;
-	public GameObject mBook1;
-	public GameObject mBook2;
-	public GameObject mBook3;
-	public GameObject mBook4;
-	public ParticleSystem mBookKemuri;
-
-	public Text mTakushimaText;
-	public Text mYoshinobuText;
-	public Text mAiText;
+	public Text mExplanation;
 
 	int mTitleState;
 	
@@ -33,13 +24,8 @@ public class TitleCtrl : MonoBehaviour {
 	}
 
 	void Init(){
-		mTakushima.gameObject.transform.position = new Vector3(0.0f, 5.0f, 0.0f);
-		mBook1.gameObject.SetActive(false);
-		mBook2.gameObject.SetActive(false);
-		mBook3.gameObject.SetActive(false);
-		mBook4.gameObject.SetActive(false);
-		mBookKemuri.renderer.enabled = false;
 		mLampKemuri.renderer.enabled = false;
+		mExplanation.setText("");
 	}
 
 	// Use this for initialization
@@ -54,96 +40,75 @@ public class TitleCtrl : MonoBehaviour {
 	void Update () {
 		switch(mTitleState){
 		case 0:
-			mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
-			mFade.startFadeOut(60);
+			mTitleUI.renderer.enabled = true;
 			++mTitleState;
 			break;
 		case 1:
-			if(mFade.isEndMove() == true){
-				string text = "肉くせぇ。何だここは？";
-				mYoshinobuText.setText(text);
-				mYoshinobuText.startTextOut(3);
+			if(isNext() == true){
 				++mTitleState;
-				mTimer = 0;
+				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
+				mFade.startFadeIn(120);
+				SoundManager.Instance.requestStream("title_bgm");
 			}
 			break;
 		case 2:
-			if(mYoshinobuText.isOutEnd() == true){
-				if(isNext() == true){
-					mYoshinobuText.setText("");
-					mLampKemuri.renderer.enabled = true;
-					mLampKemuri.setupKemuri(180, 0.02f, 0.05f, 1.0f, new Vector3(-1.0f, 2.0f, 0.0f));
-					++mTitleState;
-				}
+			if(mFade.isEndMove() == true){
+				++mTitleState;
+				string txt = "新婚旅行でハワイに来た良宣、愛夫妻。\nショッピングを楽しんでいたら、\n怪しいお店に迷い込んでしまった様子。";
+				mExplanation.setText(txt);
+				mExplanation.startTextOut(4);
 			}
 			break;
 		case 3:
-			if(mLampKemuri.isEndMove() == true){
-				mLampKemuri.renderer.enabled = false;
-				mTakushima.setupFall(6.0f, 0.5f);
-				++mTitleState;
-			}
-			break;
-		case 4:
-			if(mTakushima.isEndMove() == true){
-				mTitleCamera.startQuake(100, 2.0f, 10.0f);
-				float speed = Mathf.PI / 60.0f;
-				mSphere.setupUpDown(1.0f, speed);
-				mSphereBase.setupUpDown(0.3f, speed);
-				mLamp.setupUpDown(0.4f, speed);
-				mBooks.SetActive(false);
-				mBook1.gameObject.SetActive(true);
-				mBook2.gameObject.SetActive(true);
-				mBook3.gameObject.SetActive(true);
-				mBook4.gameObject.SetActive(true);
-				++mTitleState;
-			}
-			break;
-		case 5:
-			++mTimer;
-			if(mTimer == 40){
-				mBookKemuri.renderer.enabled = true;
-			}
-			else if(mTimer == 120){
-				mBookKemuri.renderer.enabled = false;
-			}
-			if(mTitleCamera.isEndMove() == true){
-				mTimer = 0;
-				mBookKemuri.renderer.enabled = false;
-				++mTitleState;
-				string takushimaText = "じゃんじゃじゃーーーんっ\n多久島占いの館へようこそ！！";
-				mTakushimaText.setText(takushimaText);
-				mTakushimaText.startTextOut(3);
-			}
-			break;
-		case 6:
-			if(mTakushimaText.isOutEnd() == true){
+			if(mExplanation.isOutEnd() == true){
 				if(isNext() == true){
-					string takushimaText = "今日は特別に、僕の占いを披露してあげるよ！";
-					mTakushimaText.setText(takushimaText);
-					mTakushimaText.startTextOut(3);
 					++mTitleState;
+					string txt = "はてさて何が起こるやら…。";
+					mExplanation.setText(txt);
+					mExplanation.startTextOut(4);
 				}
 			}
 			break;
+		case 4:
+			if(mExplanation.isOutEnd() == true){
+				if(isNext() == true){
+					++mTitleState;
+					mExplanation.setText("");
+					mFade.startFadeOut(120);
+				}
+			}
+			break;
+		case 5:
+			if(mFade.isEndMove() == true){
+				if(isNext() == true){
+					++mTitleState;
+					mLamp.setupVibrate(150);
+					SoundManager.Instance.requestSe("oyakata_01");
+				}
+			}
+			break;
+		case 6:
+			if(mLamp.isEndMove() == true){
+				++mTitleState;
+				mLampKemuri.renderer.enabled = true;
+				mLampKemuri.setupKemuri(180, 0.02f, 0.05f, 1.0f, new Vector3(-1.0f, 2.0f, 0.0f));
+			}
+			break;
 		case 7:
-			if(mTakushimaText.isOutEnd() == true){
-				// Input Wait
-				string takushimaText = "君たちは新婚さんかな？\nそれじゃあ、君たちの将来を占ってあげよう☆";
-				mTakushimaText.setText(takushimaText);
-				mTakushimaText.startTextOut(3);
+			if(mLampKemuri.isEndMove() == true){
+				mLampKemuri.renderer.enabled = false;
 				++mTitleState;
 			}
 			break;
 		case 8:
-			if(mTakushimaText.isOutEnd() == true){
-				mTakushimaText.setText("");
+			if(isNext() == true){
 				++mTitleState;
+				SoundManager.Instance.stopStream();
+				SoundManager.Instance.requestSe("oyakata_02");
 			}
 			break;
 		case 9:
-			++mTimer;
-			if(mTimer == 120){
+			if(isNext() == true){
 				Vector3 end = mSphere.gameObject.transform.position;
 				mTitleCamera.startLookAt(end, 0.05f, 120);
 				++mTitleState;
@@ -152,18 +117,23 @@ public class TitleCtrl : MonoBehaviour {
 			break;
 		case 10:
 			if(mTitleCamera.isEndMove() == true){
-				mTitleCamera.startMoveForward(120, 0.05f);
+				mTitleCamera.startMoveForward(120, 0.04f);
 				++mTitleState;
 				mTimer = 0;
 			}
 			break;
 		case 11:
 			++mTimer;
-			if(mTimer == 60){
+			if(mTimer == 40){
 				mFade.setFadeColor(new Color(1.0f, 1.0f, 1.0f));
 				mFade.startFadeIn(60);
 				++mTitleState;
 				mTimer = 0;
+			}
+			break;
+		case 12:
+			if(mFade.isEndMove() == true){
+				Application.LoadLevel(1);
 			}
 			break;
 		}

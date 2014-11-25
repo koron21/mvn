@@ -8,6 +8,7 @@ public class TitleObject : MonoBehaviour {
 		STATE_FALL,
 		STATE_UP_DOWN,
 		STATE_KEMURI,
+		STATE_VIBRATE,
 	};
 
 	float mFallSpeed;
@@ -71,6 +72,16 @@ public class TitleObject : MonoBehaviour {
 		mObjectState = OBJECT_STATE.STATE_KEMURI;
 	}
 
+	public void setupVibrate(int frame){
+		if(mObjectState != OBJECT_STATE.STATE_NONE){
+			return;
+		}
+		mTimer = 0;
+		mEndFrame = frame;
+		mStartPos = this.transform.position;
+		mObjectState = OBJECT_STATE.STATE_VIBRATE;
+	}
+
 	// Use this for initialization
 	void Start () {
 		mObjectState = OBJECT_STATE.STATE_NONE;
@@ -115,6 +126,21 @@ public class TitleObject : MonoBehaviour {
 				this.gameObject.transform.position = nowPos;
 				if(mTimer > mEndFrame){
 					mObjectState = OBJECT_STATE.STATE_NONE;
+				}
+			}
+			break;
+		case OBJECT_STATE.STATE_VIBRATE:
+			{
+				++mTimer;
+				const float len = 0.03f;
+				float theta = Random.Range(0, 360) * (Mathf.PI * 2.0f / 360.0f);
+				float PosX = Mathf.Cos(theta) * len;
+				float PosZ = Mathf.Sin(theta) * len;
+				Vector3 pos = mStartPos;
+				this.transform.position = new Vector3(pos.x + PosX, pos.y, pos.z + PosZ);
+				if(mTimer > mEndFrame){
+					mObjectState = OBJECT_STATE.STATE_NONE;
+					this.transform.position = mStartPos;
 				}
 			}
 			break;

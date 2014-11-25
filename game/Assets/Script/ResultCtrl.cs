@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ResultCtrl : MonoBehaviour {
 
+	public Fade mFade;
+
 	// ResultObjects
 	public ResultCamera mResultCamera;
 	public ResultObject mHouse1;
@@ -31,11 +33,14 @@ public class ResultCtrl : MonoBehaviour {
 	public GameObject mGO_Flower2_2;
 	public ResultObject mFlower2_3;
 	public GameObject mGO_Flower2_3;
-
+	
 	public ResultObject mApple1;
 	public ResultObject mApple2;
 
 	public ResultObject mGround3;
+
+	public GaugeCtrl mLoveEnergy;
+	public GaugeCtrl mMoneyGauge;
 
 	int mResultState;
 
@@ -70,10 +75,14 @@ public class ResultCtrl : MonoBehaviour {
 		mFlower2_3.setInitScale(0.001f);
 		// How to Invisible
 		//		mHouse1.renderer.enabled = true;
+
+		// GaugeInit
+		mLoveEnergy.addValue(1000.0f);
+		mMoneyGauge.addValue(1000.0f);
 	}
 
-	void UpdateLevel2(){
-		// 
+	bool isNext() {
+		return Input.GetKeyDown(KeyCode.DownArrow);
 	}
 
 	// Use this for initialization
@@ -89,9 +98,29 @@ public class ResultCtrl : MonoBehaviour {
 	void Update () {
 		switch(mResultState){
 		case 0:
-			++mTimer;
-			if(mTimer > 120){
+			mFade.setFadeColor(new Color(1.0f, 1.0f, 1.0f));
+			mFade.startFadeOut(120);
+			++mResultState;
+			break;
+		case 1:
+			if(mFade.isEndMove() == true){
 				++mResultState;
+			}
+			break;
+		case 2:
+			if(isNext() == true){
+				++mResultState;
+			}
+			break;
+		case 3:
+			// gauge Down
+			mMoneyGauge.Value = mMoneyGauge.Value - 50.0f;
+
+			if(mMoneyGauge.Value < 0.0f){
+				++mResultState;
+				mMoneyGauge.Value = 0.0f;
+				mMoneyGauge.MaxValue = 0.0f;
+
 				mGO_House2.SetActive(true);
 
 				// want to "Delay"
@@ -100,20 +129,21 @@ public class ResultCtrl : MonoBehaviour {
 				mGO_Flower2_3.SetActive(false);
 			}
 			break;
-		case 1:
+		case 4:
 			// input wait?
 			mHouse2.setSetup(0.001f, 0.04f, WAIT_FRAME);
 			mHouse1.setErase(1.3f, WAIT_FRAME);
 			++mResultState;
 			break;
-		case 2:
+		case 5:
 			if(mHouse2.isEndMove() == true){
+				mMoneyGauge.gameObject.SetActive(false);
 				mResultCamera.startQuake(80, 2.0f, 10.0f);
 				mGO_Chair2.SetActive(true);
 				++mResultState;
 			}
 			break;
-		case 3:
+		case 6:
 			mChair2.setSetup(0.001f, 0.02f, WAIT_FRAME);
 			mTree2_1.setSetup(0.01f, 3.0f, WAIT_FRAME);
 			mTree2_2.setSetup(0.01f, 3.0f, WAIT_FRAME);
@@ -131,7 +161,7 @@ public class ResultCtrl : MonoBehaviour {
 			mWeed1_2.setErase(2.0f, WAIT_FRAME);
 			++mResultState;
 			break;
-		case 4:
+		case 7:
 			if(mChair1.isEndMove() == true){
 				// invisible
 				mGO_Chair1.SetActive(false);
@@ -144,15 +174,15 @@ public class ResultCtrl : MonoBehaviour {
 				++mResultState;
 			}
 			break;
-		case 5:
+		case 8:
 			++mTimer;
-			if(mTimer > 120){
+			if(mTimer > 60){
 				++mResultState;
 				mGround3.setSetupXZ(1.0f, 60.0f, 120);
 				mTimer = 0;
 			}
 			break;
-		case 6:
+		case 9:
 			++mTimer;
 			if(mTimer == 10){
 				mGO_Flower2_1.gameObject.SetActive(true);
@@ -181,8 +211,40 @@ public class ResultCtrl : MonoBehaviour {
 			if(mTimer == 45){
 				mApple2.renderer.enabled = true;
 				mApple2.setSetup(0.01f, 1.5f, WAIT_FRAME);
+				mTimer = 0;
+				++mResultState;
 			}
 			break;
-		}	
+		case 10:
+			if(isNext() == true){
+				++mResultState;
+			}
+			break;
+		case 11:
+			// gauge Down
+			mLoveEnergy.Value = mLoveEnergy.Value - 50.0f;
+
+			if(mLoveEnergy.Value < 0.0f){
+				mLoveEnergy.Value = 0.0f;
+				mLoveEnergy.MaxValue = 0.0f;
+				++mResultState;
+			}
+			break;
+		case 12:
+			++mTimer;
+
+			if(mTimer > 240){
+				++mResultState;
+			}
+			break;
+		case 13:
+			if(isNext() == true){
+				mResultCamera.startBack(180, 0.01f);
+				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
+				mFade.startFadeIn(120);
+				++mResultState;
+			}
+			break;
+		}
 	}
 }
