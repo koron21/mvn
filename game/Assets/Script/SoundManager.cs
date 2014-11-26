@@ -11,6 +11,12 @@ public class SoundManager : MonoBehaviour
 		public AudioClip Resource;
 	};
 
+	public class SoundStatus
+	{
+		public float LeftLength;
+		public bool IsPlaying;
+	};
+
 	class SoundPlay
 	{
 		public float LeftLength;
@@ -43,7 +49,7 @@ public class SoundManager : MonoBehaviour
 		else {
 			throw new UnityException();
 		}
-		
+
 		mAudioSource = GetComponent<AudioSource>();
 		for(int i=0; i<SoundList.Length; i++) {
 			mSoundMap.Add( SoundList[i].Name, SoundList[i] );
@@ -88,20 +94,31 @@ public class SoundManager : MonoBehaviour
 				}
 			}
 		}
+
+		for(int i=0; i<mSoundStatusList.Count; i++) {
+			SoundStatus status = mSoundStatusList[i];
+
+			status.LeftLength -= Time.deltaTime;
+			if( status.LeftLength <= 0.0f ) {
+				status.IsPlaying = false;
+				mSoundStatusList.Remove( status );
+				i--;
+			}
+		}
 	}
 	
 	//==========================================================================
 	// Public Member Functions
 	//==========================================================================
-	public void requestSe(string name)
+	public SoundStatus requestSe(string name)
 	{
 		if( mSoundMap.ContainsKey(name) == false ) {
-			return;
+			return null;
 		}
 		
 		AudioClip clip = mSoundMap[name].Resource;
 		if(clip == null) {
-			return;
+			return null;
 		}
 
 		List<SoundPlay> playingList = mPlayingSoundMap[name];
@@ -117,10 +134,18 @@ public class SoundManager : MonoBehaviour
 			}
 		}
 		if( bFound == false ) {
-			return;
+			return null;
 		}
 		
 		mAudioSource.PlayOneShot( clip, volume );
+
+		// add list
+		SoundStatus status = new SoundStatus();
+		status.LeftLength = clip.length;
+		status.IsPlaying = true;
+		mSoundStatusList.Add( status );
+
+		return status;
 	}
 
 	public void requestStream(string name)
@@ -157,4 +182,5 @@ public class SoundManager : MonoBehaviour
 	private AudioSource mAudioSource;
 	private Dictionary<string, SoundInfo> mSoundMap = new Dictionary<string, SoundInfo>();
 	private Dictionary<string, List<SoundPlay> > mPlayingSoundMap = new Dictionary<string, List<SoundPlay> >();
+	private List<SoundStatus> mSoundStatusList = new List<SoundStatus>();
 }

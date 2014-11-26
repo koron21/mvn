@@ -135,8 +135,8 @@ MeshFilter:
 --- !u!1 &77958034
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-  m_PrefabInternal: {fileID: 150240333}
+  m_PrefabParentObject: {fileID: 100000, guid: aeb2e09e56b414bef9579e7d06c75c1e, type: 2}
+  m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 77958037}
@@ -152,9 +152,9 @@ GameObject:
 --- !u!82 &77958035
 AudioSource:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8200000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a,
+  m_PrefabParentObject: {fileID: 8200000, guid: aeb2e09e56b414bef9579e7d06c75c1e,
     type: 2}
-  m_PrefabInternal: {fileID: 150240333}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77958034}
   m_Enabled: 1
   serializedVersion: 3
@@ -211,9 +211,9 @@ AudioSource:
 --- !u!114 &77958036
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a,
+  m_PrefabParentObject: {fileID: 11400000, guid: aeb2e09e56b414bef9579e7d06c75c1e,
     type: 2}
-  m_PrefabInternal: {fileID: 150240333}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77958034}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -235,17 +235,19 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: e391c1a6e27b54e87a78e44dfaf645fe, type: 3}
   - Name: fall_02
     Resource: {fileID: 8300000, guid: 09b60566a356e4e5f84f39edbdd231a7, type: 3}
-  - Name: title_bgm
-    Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
-  - Name: oyakata_01
-    Resource: {fileID: 8300000, guid: bb27db86cd97c46e58449bd63ea1f784, type: 3}
-  - Name: oyakata_02
-    Resource: {fileID: 8300000, guid: a25b92876f8f9446c8a1ca5fe5d4ebf1, type: 3}
+  - Name: telop_start_01
+    Resource: {fileID: 8300000, guid: 92ed02b84b3c442978efdb91f51da3b1, type: 3}
+  - Name: telop_finish_01
+    Resource: {fileID: 8300000, guid: 6007c00de426e49bd841e06764823912, type: 3}
+  - Name: telop_hurry_01
+    Resource: {fileID: 8300000, guid: da26a1bd1cf1047e58c57915f5cc4584, type: 3}
+  - Name: bgm_hurry
+    Resource: {fileID: 8300000, guid: de96965aaf85848c297f83bda22ca445, type: 3}
 --- !u!4 &77958037
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-  m_PrefabInternal: {fileID: 150240333}
+  m_PrefabParentObject: {fileID: 400000, guid: aeb2e09e56b414bef9579e7d06c75c1e, type: 2}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77958034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
@@ -253,50 +255,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
---- !u!1001 &150240333
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 7e4e7e4e46fcf46ab94663cc7d1e791a, type: 2}
-  m_RootGameObject: {fileID: 77958034}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &285443011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,12 +2432,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e994f6e70213449d78328ccfb637e0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScaleUpValue: {x: 1.79999995, y: 1.79999995, z: 1.79999995}
+  ScaleUpValue: {x: 1.5, y: 1.5, z: 1.5}
   ScaleUpTime: .100000001
   ScaleDownTime: .100000001
   NormalColor: {r: 1, g: 1, b: 1, a: 1}
   AlertColor: {r: 1, g: 1, b: 1, a: 1}
-  AlertNumber: 3
 --- !u!114 &613410096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6376,6 +6333,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 8c82a9123f8e049949f14fa161e3766f, type: 2}
+      propertyPath: AlertNumber
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 8c82a9123f8e049949f14fa161e3766f, type: 2}
+      propertyPath: ScaleUpValue.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 8c82a9123f8e049949f14fa161e3766f, type: 2}
+      propertyPath: ScaleUpValue.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 8c82a9123f8e049949f14fa161e3766f, type: 2}
+      propertyPath: ScaleUpValue.z
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c82a9123f8e049949f14fa161e3766f, type: 2}
   m_RootGameObject: {fileID: 613410093}
@@ -7853,7 +7826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0531b80ec1496a642ba3bfe9bc92340f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTime: 60
+  stageTime: 20
+  AlertTime: 15
   StartMesPrefab: {fileID: 100000, guid: e9d2e0f67808b48499921e6a10d1f890, type: 2}
   FinishMesPrefab: {fileID: 100000, guid: 5f10d827836d5483eb257816df785481, type: 2}
 --- !u!4 &2014398395

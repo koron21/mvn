@@ -31,6 +31,7 @@ public class Game : MonoBehaviour
 		}
 	}
 
+	public float AlertTime;
 	public GameObject StartMesPrefab;
 	public GameObject FinishMesPrefab;
 
@@ -43,6 +44,8 @@ public class Game : MonoBehaviour
 	private GameObject controllerInfo;
 	private GUIText    controllerInfoText;
 	private Fade       fade;
+
+	private SoundManager.SoundStatus hurrySeStatus;
 
 	void Awake ()
 	{
@@ -165,16 +168,25 @@ public class Game : MonoBehaviour
 		case 0:
 			if (StartMesPrefab) {
 				startMes = Instantiate(StartMesPrefab) as GameObject;
+				SoundManager.Instance.requestSe("telop_start_01");
 			}
 			phase++;
 			break;
 
 		case 1:
 			if (startMes == null) {
+				timer = 0.25f; // tyotto mattekara game start suru
+				phase++;
+			}
+			break;
+
+		case 2:
+			timer -= Time.deltaTime;
+			if (timer <= 0.0f) {
 				timer = stageTime;
 				dropSystem.SetActive( true );
 				SoundManager.Instance.requestStream("bgm");
-
+				
 				ChangeState(GAME_STATE.IN_GAME);
 			}
 			break;
@@ -184,7 +196,24 @@ public class Game : MonoBehaviour
 	private void UpdateInGame()
 	{
 		timer -= Time.deltaTime;
-		
+	
+		switch(phase) {
+		case 0:
+			if (timer <= AlertTime) {
+				SoundManager.Instance.stopStream();
+				hurrySeStatus = SoundManager.Instance.requestSe("telop_hurry_01");
+				phase++;
+			}
+			break;
+		case 1:
+			if( hurrySeStatus == null || hurrySeStatus.IsPlaying == false ) {
+				hurrySeStatus = null;
+				SoundManager.Instance.requestStream("bgm_hurry");
+				phase++;
+			}
+			break;
+		}
+
 		if (timer <= 0) {
 			dropSystem.SetActive(false);
 			ChangeState(GAME_STATE.FINISH);
@@ -195,10 +224,12 @@ public class Game : MonoBehaviour
 	{
 		switch (phase) {
 		case 0:
+			SoundManager.Instance.stopStream();
+
 			if (FinishMesPrefab) {
 				finishMes = Instantiate(FinishMesPrefab) as GameObject;
+				SoundManager.Instance.requestSe("telop_finish_01");
 			}
-			SoundManager.Instance.stopStream();
 			phase++;
 			break;
 			

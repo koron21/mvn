@@ -29,7 +29,7 @@ public class TimerDisp : MonoBehaviour
 			mDispNumOld = mNumberRef.DispNumber;
 			mNumberRef.DispNumber = dispNum;
 
-			if( dispNum <= AlertNumber && dispNum > 0 ) {
+			if( dispNum <= mGameRef.AlertTime && dispNum > 0 ) {
 				mNumberRef.DispColor = AlertColor;
 
 				if( mDispNumOld > mNumberRef.DispNumber ) {
@@ -82,7 +82,6 @@ public class TimerDisp : MonoBehaviour
 	public float ScaleDownTime;
 	public Color NormalColor;
 	public Color AlertColor;
-	public int AlertNumber;
 
 	private Game mGameRef;
 	private Number mNumberRef;
