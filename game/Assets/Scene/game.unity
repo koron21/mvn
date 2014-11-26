@@ -235,6 +235,12 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: e391c1a6e27b54e87a78e44dfaf645fe, type: 3}
   - Name: fall_02
     Resource: {fileID: 8300000, guid: 09b60566a356e4e5f84f39edbdd231a7, type: 3}
+  - Name: title_bgm
+    Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
+  - Name: oyakata_01
+    Resource: {fileID: 8300000, guid: bb27db86cd97c46e58449bd63ea1f784, type: 3}
+  - Name: oyakata_01
+    Resource: {fileID: 8300000, guid: a25b92876f8f9446c8a1ca5fe5d4ebf1, type: 3}
 --- !u!4 &77958037
 Transform:
   m_ObjectHideFlags: 0
@@ -1580,6 +1586,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &342653863
 Renderer:
   m_ObjectHideFlags: 0
@@ -1877,6 +1884,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 1
   coolTimeMax: 3
+  playOnAwake: 0
 --- !u!95 &435015642
 Animator:
   serializedVersion: 3
@@ -1892,6 +1900,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &439935085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2543,6 +2552,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &625026506
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,6 +4322,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &792937755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,6 +4339,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &801137096
 GameObject:
   m_ObjectHideFlags: 0
@@ -4642,6 +4654,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &855758711
 Renderer:
   m_ObjectHideFlags: 0
@@ -4927,7 +4940,7 @@ GUIText:
   m_GameObject: {fileID: 940705135}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: "\u64CD\u4F5C\u8AAC\u660E\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2190\uFF1A\u3000\u5DE6\u306B\u79FB\u52D5\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2192\uFF1A\u3000\u53F3\u306B\u79FB\u52D5"
+  m_Text: "\u64CD\u4F5C\u8AAC\u660E\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2190\uFF1A\u3000\u5DE6\u306B\u79FB\u52D5\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2192\uFF1A\u3000\u53F3\u306B\u79FB\u52D5\n\u4E38\u9023\u6253\u3000\u3000\u3000\u25CB\uFF1A\u3000\u3000\u3000\u52A0\u901F"
   m_Anchor: 4
   m_Alignment: 1
   m_PixelOffset: {x: 640, y: 320}
@@ -5137,6 +5150,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &1006526921
 Renderer:
   m_ObjectHideFlags: 0
@@ -5448,6 +5462,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &1088740726
 GameObject:
   m_ObjectHideFlags: 0
@@ -5865,6 +5880,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &1177641115
 Renderer:
   m_ObjectHideFlags: 0
@@ -6352,6 +6368,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1375606562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6368,6 +6385,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &1377443347
 GameObject:
   m_ObjectHideFlags: 0
@@ -6471,6 +6489,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &1392125226
 GameObject:
   m_ObjectHideFlags: 0
@@ -7034,6 +7053,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &1622966013
 Renderer:
   m_ObjectHideFlags: 0
@@ -7110,6 +7130,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!23 &1672149064
 Renderer:
   m_ObjectHideFlags: 0
@@ -7692,6 +7713,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!4 &1976317613
 Transform:
   m_ObjectHideFlags: 0
@@ -7725,6 +7747,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 1
   coolTimeMax: 3
+  playOnAwake: 0
 --- !u!1 &1993079489
 GameObject:
   m_ObjectHideFlags: 0
@@ -7804,6 +7827,7 @@ MonoBehaviour:
   loop: 1
   coolTimeMin: 0
   coolTimeMax: 0
+  playOnAwake: 0
 --- !u!1 &2014398393
 GameObject:
   m_ObjectHideFlags: 0
