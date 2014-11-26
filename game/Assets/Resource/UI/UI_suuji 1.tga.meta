@@ -1,7 +1,18 @@
 fileFormatVersion: 2
 guid: 26b4f460ec5af3b4191489d92f273d40
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: UI_suuji 1
+    21300002: UI_suuji 1_0
+    21300004: UI_suuji 1_1
+    21300006: UI_suuji 1_2
+    21300008: UI_suuji 1_3
+    21300010: UI_suuji 1_4
+    21300012: UI_suuji 1_5
+    21300014: UI_suuji 1_6
+    21300016: UI_suuji 1_7
+    21300018: UI_suuji 1_8
+    21300020: UI_suuji 1_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -31,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,6 +53,106 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: UI_suuji 1_0
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 812
+        width: 166
+        height: 152
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_1
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 801
+        width: 120
+        height: 162
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_2
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 802
+        width: 127
+        height: 162
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_3
+      rect:
+        serializedVersion: 2
+        x: 851
+        y: 799
+        width: 111
+        height: 166
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_4
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 561
+        width: 147
+        height: 162
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_5
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 559
+        width: 113
+        height: 164
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_6
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 555
+        width: 135
+        height: 168
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_7
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 555
+        width: 132
+        height: 166
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_8
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 304
+        width: 137
+        height: 162
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_suuji 1_9
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 299
+        width: 132
+        height: 167
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

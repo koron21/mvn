@@ -36,7 +36,7 @@ public class Number : MonoBehaviour
 			throw new UnityException();
 		}
 		else {
-			float width = 0.85f;
+			float width = 0.95f;
 			float baseX = (float)(ketaList.Count - 1) * width * 0.5f;
 			for(int i=0; i<mKetaSprite.Count; i++) {
 				if( i >= ketaList.Count ) {
