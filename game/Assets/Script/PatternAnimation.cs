@@ -11,6 +11,7 @@ public class PatternAnimation : MonoBehaviour
     public bool loop;
     public float coolTimeMin;
     public float coolTimeMax;
+    public bool playOnAwake;
 
     public bool IsPlaying
     { 
@@ -27,6 +28,7 @@ public class PatternAnimation : MonoBehaviour
 
     void Start()
     {
+        // instantiate and find clips
         clips = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i ++)
         {
@@ -36,9 +38,13 @@ public class PatternAnimation : MonoBehaviour
             else 
                 clips[i].renderer.enabled = false;
         }
+
         clipLength = length / (float)clips.Length;
         index = 0;
         OnStart += () => clips[0].renderer.enabled = true;
+
+        if (playOnAwake)
+            Play();
     }
 
     void Update()
