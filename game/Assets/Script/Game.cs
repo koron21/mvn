@@ -54,8 +54,6 @@ public class Game : MonoBehaviour
 		// controller info setting
 		controllerInfo = GameObject.Find ("ControllerInfo");
 		controllerInfoText = controllerInfo.GetComponent<GUIText>();
-		controllerInfoText.pixelOffset = new Vector2(Screen.width / 2,
-		                                   Screen.height / 2);
 		controllerInfoText.fontSize = (int)(70.0f * (float)Screen.width / 1280.0f);
 		controllerInfoText.color    = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 		controllerInfo.SetActive(false);
@@ -162,7 +160,7 @@ public class Game : MonoBehaviour
 	}                     
 
 	private void UpdateStart()
-	{
+	{ 
 		switch (phase) {
 		case 0:
 			if (StartMesPrefab) {
