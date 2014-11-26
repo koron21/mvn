@@ -117,7 +117,7 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
   - Name: oyakata_01
     Resource: {fileID: 8300000, guid: bb27db86cd97c46e58449bd63ea1f784, type: 3}
-  - Name: oyakata_01
+  - Name: oyakata_02
     Resource: {fileID: 8300000, guid: a25b92876f8f9446c8a1ca5fe5d4ebf1, type: 3}
 --- !u!1001 &100100000
 Prefab:
