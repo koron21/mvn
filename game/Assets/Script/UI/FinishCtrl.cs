@@ -20,6 +20,8 @@ public class FinishCtrl : MonoBehaviour
 
 		mBaseScaleX = transform.localScale.x;
 		mShrinkScaleX = transform.localScale.x * 0.5f;
+
+		transform.localPosition = mInitPos;
 	}
 	
 	// Update is called once per frame
