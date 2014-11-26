@@ -7826,7 +7826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0531b80ec1496a642ba3bfe9bc92340f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTime: 20
+  stageTime: 60
   AlertTime: 15
   StartMesPrefab: {fileID: 100000, guid: e9d2e0f67808b48499921e6a10d1f890, type: 2}
   FinishMesPrefab: {fileID: 100000, guid: 5f10d827836d5483eb257816df785481, type: 2}
