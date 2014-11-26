@@ -4895,7 +4895,7 @@ GUIText:
   m_Text: "\u64CD\u4F5C\u8AAC\u660E\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2190\uFF1A\u3000\u5DE6\u306B\u79FB\u52D5\n\u5DE6\u30B9\u30C6\u30A3\u30C3\u30AF\u3000\u2192\uFF1A\u3000\u53F3\u306B\u79FB\u52D5\n\u4E38\u9023\u6253\u3000\u3000\u3000\u25CB\uFF1A\u3000\u3000\u3000\u52A0\u901F"
   m_Anchor: 4
   m_Alignment: 1
-  m_PixelOffset: {x: 640, y: 320}
+  m_PixelOffset: {x: 640, y: 360}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 5e9e1452021fb86429b2498d99dd412d, type: 3}
@@ -4914,7 +4914,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 940705135}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .300000012, z: 0}
+  m_LocalPosition: {x: 0, y: .280000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
