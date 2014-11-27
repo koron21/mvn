@@ -44,6 +44,7 @@ public class Text : MonoBehaviour {
 	void Start () {
 		mText = this.guiText.text;
 		this.guiText.text = "";
+		this.guiText.fontSize = (int)(70.0f * (float)Screen.width / 1280.0f);
 		mOutLength = 0;
 		mTimer = 0;
 		mFrame = 5;
