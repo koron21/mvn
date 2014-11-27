@@ -9,6 +9,7 @@ public class ResultObject : MonoBehaviour {
 		OBS_SETUP,
 		OBS_ERASE,
 		OBS_SETUP_XZ,
+		OBS_PARABOLA,
 	};
 
 	Vector3 mInitScale;
@@ -24,6 +25,14 @@ public class ResultObject : MonoBehaviour {
 	float mEraseInitScale;
 	int mEraseFrame;
 	int mEraseEndFrame;
+
+	// Parabola
+	int mFrame;
+	int mParabolaFrame;
+	Vector3 mParabolaEndPos;
+	Vector3 mParabolaMoveVecXZ;
+	float mParabolaHeight;
+	float mTheta;
 
 	public bool isEndMove(){
 		if(mObjectState == OBJECT_STATE.OBS_NONE){
@@ -57,6 +66,21 @@ public class ResultObject : MonoBehaviour {
 		mSetupEndScale = endScale;
 		mSetupFrame = 0;
 		mSetupEndFrame = frame;
+	}
+
+	public void setParabola(int frame, float height, Vector3 endPos){
+		if(mObjectState != OBJECT_STATE.OBS_NONE){
+			return;
+		}
+		mObjectState = OBJECT_STATE.OBS_PARABOLA;
+		mParabolaFrame = frame;
+		mParabolaEndPos = endPos;
+		mTheta = 0.0f;
+		mParabolaHeight = height;
+		mFrame = 0;
+		Vector3 vec = endPos - this.transform.position;
+		mParabolaMoveVecXZ = new Vector3(vec.x, 0.0f, vec.z);
+		mParabolaMoveVecXZ /= frame;
 	}
 
 	// Use this for initialization
@@ -114,12 +138,26 @@ public class ResultObject : MonoBehaviour {
 		case OBJECT_STATE.OBS_SETUP_XZ:
 			{
 				float scale = (mSetupEndScale - mSetupInitScale) / mSetupEndFrame * mSetupFrame + mSetupInitScale;
-				this.transform.localScale = new Vector3(scale, 0.0001f, scale);
+				this.transform.localScale = new Vector3(scale, scale, 0.0001f);
 				++mSetupFrame;
 				if(mSetupFrame > mSetupEndFrame){
 					mObjectState = OBJECT_STATE.OBS_NONE_XZ;
-					this.transform.localScale = new Vector3(mSetupEndScale, 0.0001f, mSetupEndScale);
+					this.transform.localScale = new Vector3(mSetupEndScale, mSetupEndScale, 0.0001f);
 				}
+			}
+			break;
+		case OBJECT_STATE.OBS_PARABOLA:
+			{
+				++mFrame;
+				Vector3 nowPos = this.transform.position;
+				nowPos += mParabolaMoveVecXZ;
+				mTheta = Mathf.PI * mFrame / mParabolaFrame;
+				nowPos.y = Mathf.Sin(mTheta) * mParabolaHeight + mParabolaEndPos.y;
+				if(mFrame > mParabolaFrame){
+					nowPos = mParabolaEndPos;
+					mObjectState = OBJECT_STATE.OBS_NONE;
+				}
+				this.transform.position = nowPos;
 			}
 			break;
 		}
