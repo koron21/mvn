@@ -8,10 +8,13 @@ public class TitleCamera : MonoBehaviour {
 		MOVE_FORWARD,
 		QUAKE,
 		LOOKAT,
+		MOVE_BACK_UP,
 	};
 	
 	// Private Member
 	float mMoveForwardSpeed;
+	float mMoveBackSpeed;
+	Vector3 mMoveBackVec;
 	int mMoveTime;
 
 	int mQuakeFrame;
@@ -42,6 +45,21 @@ public class TitleCamera : MonoBehaviour {
 		mCameraState = CameraState.MOVE_FORWARD;
 		mMoveTime = frame;
 		mMoveForwardSpeed = speed;
+		mTimer = 0;
+	}
+
+	public void startMoveBack(int frame, float speed, float lookSpeed, Vector3 endLookAt){
+		if(mCameraState != CameraState.NONE){
+			return;
+		}
+		mCameraState = CameraState.MOVE_BACK_UP;
+		mLookAt = this.transform.position + this.transform.forward * 5.0f;
+		mMoveBackVec = -this.transform.forward;
+		mMoveBackVec *= speed;
+		mMoveTime = frame;
+		mMoveBackSpeed = speed;
+		mLookAtSpeed = lookSpeed;
+		mEndLookAt = endLookAt;
 		mTimer = 0;
 	}
 
@@ -115,6 +133,21 @@ public class TitleCamera : MonoBehaviour {
 				mLookAt = pos;
 				this.transform.LookAt(mLookAt);
 				if(mTimer > mLookAtWait){
+					mCameraState = CameraState.NONE;
+				}
+			}
+			break;
+		case CameraState.MOVE_BACK_UP:
+			{
+				++mTimer;
+				Vector3 LookPos = (mEndLookAt - mLookAt) * mLookAtSpeed + mLookAt;
+				mLookAt = LookPos;
+				this.transform.LookAt(mLookAt);
+				Vector3 pos = this.transform.position;
+//				pos -= this.transform.forward * mMoveBackSpeed;
+				pos += mMoveBackVec;
+				this.transform.position = pos;
+				if(mTimer > mMoveTime){
 					mCameraState = CameraState.NONE;
 				}
 			}
