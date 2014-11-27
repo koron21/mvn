@@ -256,6 +256,8 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: d1101cc0aa4d24130a10d561565fd67b, type: 3}
   - Name: se_bonus_01
     Resource: {fileID: 8300000, guid: 347eb2472d8bf47e4b3667003e1eba78, type: 3}
+  - Name: se_hit_04
+    Resource: {fileID: 8300000, guid: 0cdf6f015109e45d2851937d662ba3a9, type: 3}
 --- !u!4 &77958037
 Transform:
   m_ObjectHideFlags: 0

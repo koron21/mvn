@@ -73,9 +73,14 @@ public class Player : MonoBehaviour
 			if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false ) {
 				bunbun.GetComponent<PlayerCtrl>().doZukkoke();
 
-				SoundManager.Instance.requestSe("se_hit_01");
+				if (Random.Range(0, 5) == 0) {
+					SoundManager.Instance.requestSe("se_hit_04");
+				}
+				else {
+					SoundManager.Instance.requestSe("se_hit_01");
+				}
 
-				if( Random.Range(0, 2) == 0 ) {
+				if (Random.Range(0, 2) == 0) {
 					SoundManager.Instance.requestSe("se_hit_02");
 				}
 				else {
