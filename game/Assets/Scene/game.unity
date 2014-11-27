@@ -7970,10 +7970,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0531b80ec1496a642ba3bfe9bc92340f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageTime: 60
+  stageTime: 3
   AlertTime: 15
   StartMesPrefab: {fileID: 100000, guid: e9d2e0f67808b48499921e6a10d1f890, type: 2}
   FinishMesPrefab: {fileID: 100000, guid: 5f10d827836d5483eb257816df785481, type: 2}
+  BonusMesPrefab: {fileID: 100000, guid: 6a997385baeb34df89d6fe57c7c34228, type: 2}
 --- !u!4 &2014398395
 Transform:
   m_ObjectHideFlags: 0

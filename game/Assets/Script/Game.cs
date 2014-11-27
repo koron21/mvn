@@ -45,12 +45,14 @@ public class Game : MonoBehaviour
 	public float AlertTime;
 	public GameObject StartMesPrefab;
 	public GameObject FinishMesPrefab;
+	public GameObject BonusMesPrefab;
 
     private float timer;
 	private GAME_STATE state;
 	private int phase;
 	private GameObject startMes;
 	private GameObject finishMes;
+	private GameObject bonusMes;
 	private GameObject dropSystem;
 	private GameObject controllerInfo;
 	private GUIText    controllerInfoText;
@@ -281,14 +283,11 @@ public class Game : MonoBehaviour
 		case 0:
 			SoundManager.Instance.requestSe("se_bonus_01");
 			SoundManager.Instance.requestStream("bgm_bonus");
+			bonusMes = Instantiate(BonusMesPrefab) as GameObject;
 			phase++;
 			break;
 
 		case 1:
-			phase++;
-			break;
-
-		case 2:
 			if (bonusLoveNum == 0 && bonusMoneyNum == 0) {
 				timer = 4.0f;
 				phase++;
@@ -315,7 +314,7 @@ public class Game : MonoBehaviour
 			}
 			break;
 
-		case 3:
+		case 2:
 			timer -= Time.deltaTime;
 			if (timer <= 0.0f) {
 				ChangeState(GAME_STATE.END);
