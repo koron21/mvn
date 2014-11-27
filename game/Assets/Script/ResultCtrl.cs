@@ -71,7 +71,7 @@ public class ResultCtrl : MonoBehaviour {
 		mWeed1_1.setInitScale(2.0f);
 		mWeed1_2.setInitScale(2.0f);
 
-		mHouse2.setInitScale(0.001f);
+		mHouse2.setInitScale(0.0f);
 		mGO_House2.SetActive(false);
 		mChair2.setInitScale(0.001f);
 		mGO_Chair2.SetActive(false);
@@ -142,6 +142,7 @@ public class ResultCtrl : MonoBehaviour {
 		case 0:
 			mFade.setFadeColor(new Color(1.0f, 1.0f, 1.0f));
 			mFade.startFadeOut(120);
+			SoundManager.Instance.requestStream("bgm_result");
 			++mResultState;
 			break;
 		case 1:
@@ -172,12 +173,14 @@ public class ResultCtrl : MonoBehaviour {
 			break;
 		case 4:
 			// input wait?
-			mHouse2.setSetup(0.001f, 0.04f, WAIT_FRAME);
-			mHouse1.setErase(1.3f, WAIT_FRAME);
+			mHouse2.setSetup(0.001f, 0.04f, 60);
+			mHouse1.setErase(1.3f, 60);
+			SoundManager.Instance.requestSe("se_build_a");
 			++mResultState;
 			break;
 		case 5:
 			if(mHouse2.isEndMove() == true){
+				SoundManager.Instance.requestSe("se_build_b");
 				mResultCamera.startQuake(80, 2.0f, 10.0f);
 				mGO_Chair2.SetActive(true);
 				++mResultState;
@@ -227,6 +230,7 @@ public class ResultCtrl : MonoBehaviour {
 			if(mTimer == 10){
 				mGO_Flower2_1.gameObject.SetActive(true);
 				mGrass1.setSetup(0.01f, 0.5f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 			}
 			if(mTimer == 11){
 				mFlower2_1.setSetup(0.01f, 2.3f, WAIT_FRAME);
@@ -236,6 +240,7 @@ public class ResultCtrl : MonoBehaviour {
 				mGrass2.setSetup(0.01f, 0.5f, WAIT_FRAME);
 				mTree3_1.renderer.enabled = true;
 				mTree3_1.setSetup(0.01f, 3.0f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 			}
 			if(mTimer == 21){
 				mFlower2_2.setSetup(0.01f, 2.3f, WAIT_FRAME);
@@ -243,6 +248,7 @@ public class ResultCtrl : MonoBehaviour {
 			if(mTimer == 30){
 				mGO_Flower2_3.gameObject.SetActive(true);
 				mGrass3.setSetup(0.01f, 0.5f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 			}
 			if(mTimer == 31){
 				mFlower2_3.setSetup(0.01f, 2.3f, WAIT_FRAME);
@@ -251,6 +257,7 @@ public class ResultCtrl : MonoBehaviour {
 				mApple1.renderer.enabled = true;
 				mApple1.setSetup(0.01f, 1.5f, WAIT_FRAME);
 				mGrass4.setSetup(0.01f, 0.5f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 			}
 			if(mTimer == 45){
 				mApple2.renderer.enabled = true;
@@ -258,9 +265,11 @@ public class ResultCtrl : MonoBehaviour {
 			}
 			if(mTimer == 50){
 				mGrass5.setSetup(0.01f, 0.5f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 			}
 			if(mTimer == 60){
 				mGrass6.setSetup(0.01f, 0.5f, WAIT_FRAME);
+				SoundManager.Instance.requestSe("se_build_d");
 				mTimer = 0;
 				++mResultState;
 			}
@@ -285,6 +294,7 @@ public class ResultCtrl : MonoBehaviour {
 					mHeart[mFireIndex].setErase(1.0f, WAIT_FRAME);
 					mBaby[mFireIndex].setInitScale(mBabyScale[mFireIndex]);
 					mBaby[mFireIndex].setSetup(0.02f, mBabyScale[mFireIndex], WAIT_FRAME);
+					SoundManager.Instance.requestSe("se_baby");
 					++mFireIndex;
 				}
 			}
@@ -322,6 +332,8 @@ public class ResultCtrl : MonoBehaviour {
 				mResultCamera.startBack(180, 0.01f);
 				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
 				mFade.startFadeIn(120);
+				SoundManager.Instance.stopStream();
+				SoundManager.Instance.requestSe("se_return");
 				++mResultState;
 			}
 			break;
