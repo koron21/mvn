@@ -42,6 +42,20 @@ public class ResultCtrl : MonoBehaviour {
 	public GaugeCtrl mLoveEnergy;
 	public GaugeCtrl mMoneyGauge;
 
+	public ResultObject[] mHeart;
+	public ResultObject[] mBaby;
+	bool[] mFire;
+	float[] mBabyScale;
+	int mBabyIndex;
+	int mFireIndex;
+
+	public ResultObject mGrass1;
+	public ResultObject mGrass2;
+	public ResultObject mGrass3;
+	public ResultObject mGrass4;
+	public ResultObject mGrass5;
+	public ResultObject mGrass6;
+
 	int mResultState;
 
 	int mTimer;
@@ -79,6 +93,34 @@ public class ResultCtrl : MonoBehaviour {
 		// GaugeInit
 		mLoveEnergy.addValue(1000.0f);
 		mMoneyGauge.addValue(1000.0f);
+
+		mFire = new bool[mBaby.Length];
+		mBabyScale = new float[mBaby.Length];
+		for(int i = 0; i < mBaby.Length; ++i){
+//			mBaby[i].renderer.enabled = false;
+//			mHeart[i].renderer.enabled = false;
+			mHeart[i].setInitScale(0.0f);
+			mBaby[i].setInitScale(0.0f);
+			mFire[i] = false;
+		}
+		mBabyScale[0] = 1.8f;
+		mBabyScale[1] = 1.8f;
+		mBabyScale[2] = 1.5f;
+		mBabyScale[3] = 1.6f;
+		mBabyScale[4] = 1.5f;
+		mBabyScale[5] = 1.8f;
+		mBabyScale[6] = 1.6f;
+		mBabyScale[7] = 1.6f;
+		mBabyScale[8] = 1.7f;
+		mBabyScale[9] = 1.8f;
+		mBabyScale[10] = 1.8f;
+
+		mGrass1.setInitScale(0.0f);
+		mGrass2.setInitScale(0.0f);
+		mGrass3.setInitScale(0.0f);
+		mGrass4.setInitScale(0.0f);
+		mGrass5.setInitScale(0.0f);
+		mGrass6.setInitScale(0.0f);
 	}
 
 	bool isNext() {
@@ -110,19 +152,18 @@ public class ResultCtrl : MonoBehaviour {
 		case 2:
 			if(isNext() == true){
 				++mResultState;
+				// gauge Down
+				mMoneyGauge.startDecrease(3.0f, mHouse1.transform.position);
+				mTimer = 0;
 			}
 			break;
 		case 3:
-			// gauge Down
-			mMoneyGauge.Value = mMoneyGauge.Value - 50.0f;
-
-			if(mMoneyGauge.Value < 0.0f){
+			++mTimer;
+			if(mTimer > 50){
 				++mResultState;
-				mMoneyGauge.Value = 0.0f;
-				mMoneyGauge.MaxValue = 0.0f;
+				mTimer = 0;
 
 				mGO_House2.SetActive(true);
-
 				// want to "Delay"
 				mGO_Flower2_1.SetActive(false);
 				mGO_Flower2_2.SetActive(false);
@@ -137,7 +178,6 @@ public class ResultCtrl : MonoBehaviour {
 			break;
 		case 5:
 			if(mHouse2.isEndMove() == true){
-				mMoneyGauge.gameObject.SetActive(false);
 				mResultCamera.startQuake(80, 2.0f, 10.0f);
 				mGO_Chair2.SetActive(true);
 				++mResultState;
@@ -186,12 +226,14 @@ public class ResultCtrl : MonoBehaviour {
 			++mTimer;
 			if(mTimer == 10){
 				mGO_Flower2_1.gameObject.SetActive(true);
+				mGrass1.setSetup(0.01f, 0.5f, WAIT_FRAME);
 			}
 			if(mTimer == 11){
 				mFlower2_1.setSetup(0.01f, 2.3f, WAIT_FRAME);
 			}
 			if(mTimer == 20){
 				mGO_Flower2_2.gameObject.SetActive(true);
+				mGrass2.setSetup(0.01f, 0.5f, WAIT_FRAME);
 				mTree3_1.renderer.enabled = true;
 				mTree3_1.setSetup(0.01f, 3.0f, WAIT_FRAME);
 			}
@@ -200,6 +242,7 @@ public class ResultCtrl : MonoBehaviour {
 			}
 			if(mTimer == 30){
 				mGO_Flower2_3.gameObject.SetActive(true);
+				mGrass3.setSetup(0.01f, 0.5f, WAIT_FRAME);
 			}
 			if(mTimer == 31){
 				mFlower2_3.setSetup(0.01f, 2.3f, WAIT_FRAME);
@@ -207,10 +250,17 @@ public class ResultCtrl : MonoBehaviour {
 			if(mTimer == 40){
 				mApple1.renderer.enabled = true;
 				mApple1.setSetup(0.01f, 1.5f, WAIT_FRAME);
+				mGrass4.setSetup(0.01f, 0.5f, WAIT_FRAME);
 			}
 			if(mTimer == 45){
 				mApple2.renderer.enabled = true;
 				mApple2.setSetup(0.01f, 1.5f, WAIT_FRAME);
+			}
+			if(mTimer == 50){
+				mGrass5.setSetup(0.01f, 0.5f, WAIT_FRAME);
+			}
+			if(mTimer == 60){
+				mGrass6.setSetup(0.01f, 0.5f, WAIT_FRAME);
 				mTimer = 0;
 				++mResultState;
 			}
@@ -222,27 +272,62 @@ public class ResultCtrl : MonoBehaviour {
 			break;
 		case 11:
 			// gauge Down
-			mLoveEnergy.Value = mLoveEnergy.Value - 50.0f;
-
-			if(mLoveEnergy.Value < 0.0f){
-				mLoveEnergy.Value = 0.0f;
-				mLoveEnergy.MaxValue = 0.0f;
-				++mResultState;
-			}
+			mLoveEnergy.startDecrease(4.0f, mLoveEnergy.transform.position);
+			mBabyIndex = 0;
+			mFireIndex = 0;
+			mTimer = 0;
+			++mResultState;
 			break;
 		case 12:
 			++mTimer;
+			if(mFire[mFireIndex] == true){
+				if(mHeart[mFireIndex].isEndMove() == true){
+					mHeart[mFireIndex].setErase(1.0f, WAIT_FRAME);
+					mBaby[mFireIndex].setInitScale(mBabyScale[mFireIndex]);
+					mBaby[mFireIndex].setSetup(0.02f, mBabyScale[mFireIndex], WAIT_FRAME);
+					++mFireIndex;
+				}
+			}
+			if(mBabyIndex < mBaby.Length){
+				if(mTimer % 20 == 17){
+					mHeart[mBabyIndex].setInitScale(1.0f);
+				}
+				else if(mTimer % 20 == 19){
+					mHeart[mBabyIndex].setInitScale(1.0f);
+					mHeart[mBabyIndex].setParabola(WAIT_FRAME, 2.0f, mBaby[mBabyIndex].transform.position);
+					mFire[mBabyIndex] = true;
+					++mBabyIndex;
+				}
+			}
 
-			if(mTimer > 240){
+			if(mFireIndex >= mBaby.Length){
 				++mResultState;
+				mTimer = 0;
 			}
 			break;
 		case 13:
+			++mTimer;
+			if(mTimer % 210 == 0){
+				mBaby[mBaby.Length - 1].setParabola(60, 0.7f, mBaby[mBaby.Length - 1].transform.position);
+			}
+			if(isNext() == true){
+				++mResultState;
+			}
+			break;
+		case 14:
+			++mResultState;
+			break;
+		case 15:
 			if(isNext() == true){
 				mResultCamera.startBack(180, 0.01f);
 				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
 				mFade.startFadeIn(120);
 				++mResultState;
+			}
+			break;
+		case 16:
+			if(mFade.isEndMove() == true){
+				Application.LoadLevel(3);
 			}
 			break;
 		}
