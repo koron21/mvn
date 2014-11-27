@@ -56,6 +56,8 @@ public class ResultCtrl : MonoBehaviour {
 	public ResultObject mGrass5;
 	public ResultObject mGrass6;
 
+	public GameObject mResultText;
+
 	int mResultState;
 
 	int mTimer;
@@ -83,6 +85,8 @@ public class ResultCtrl : MonoBehaviour {
 
 		mApple1.renderer.enabled = false;
 		mApple2.renderer.enabled = false;
+
+		mResultText.SetActive(false);
 
 		mFlower2_1.setInitScale(0.001f);
 		mFlower2_2.setInitScale(0.001f);
@@ -123,7 +127,7 @@ public class ResultCtrl : MonoBehaviour {
 		mGrass6.setInitScale(0.0f);
 	}
 
-	bool isNext() {
+	static public bool isNext() {
 		return Input.GetKeyDown(KeyCode.DownArrow);
 	}
 
@@ -154,7 +158,7 @@ public class ResultCtrl : MonoBehaviour {
 			if(isNext() == true){
 				++mResultState;
 				// gauge Down
-				mMoneyGauge.startDecrease(3.0f, mHouse1.transform.position);
+				mMoneyGauge.startDecrease(2.0f, mHouse1.transform.position);
 				mTimer = 0;
 			}
 			break;
@@ -325,10 +329,11 @@ public class ResultCtrl : MonoBehaviour {
 			}
 			break;
 		case 14:
+			mResultText.SetActive(true);
 			++mResultState;
 			break;
 		case 15:
-			if(isNext() == true){
+			if(mResultText.GetComponentInChildren<ResultText>().IsFinish == true){
 				mResultCamera.startBack(180, 0.01f);
 				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
 				mFade.startFadeIn(120);

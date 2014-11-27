@@ -42,7 +42,7 @@ public class SoundManager : MonoBehaviour
 	
 	//! First Initialization
 	void Awake()
-	{
+	{ 
 		if( mpInstance == null ) {
 			mpInstance = this;
 		}
