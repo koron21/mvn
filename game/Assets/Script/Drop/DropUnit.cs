@@ -93,9 +93,6 @@ public class DropUnit : MonoBehaviour
 		if( mState != STATE.FALL ) {
 			return;
 		}
-		if( mGameRef && mGameRef.IsInGame == false ) {
-			return;
-		}
 
 		// If other is floor, bounce drop object then shrink it
 		if( other.gameObject.name == "Ground" ) {

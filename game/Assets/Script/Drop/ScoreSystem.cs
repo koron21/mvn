@@ -23,6 +23,13 @@ public class ScoreSystem : MonoBehaviour
 		LoveScore += loveScore;
 		MoneyScore += moneyScore;
 
+		if( LoveScore > MaxScore ) {
+			LoveScore = MaxScore;
+		}
+		if( MoneyScore > MaxScore ) {
+			MoneyScore = MaxScore;
+		}
+
 		if( mpLoveGauge && loveScore > 0 ) {
 			mpLoveGauge.addValue( (float)loveScore );
 		}
@@ -77,6 +84,7 @@ public class ScoreSystem : MonoBehaviour
 	//==========================================================================
 	public int LoveScore = 0;
 	public int MoneyScore = 0;
+	public int MaxScore = 1000;
 
 	//==========================================================================
 	// Private Member Variables

@@ -9,6 +9,7 @@ public class Game : MonoBehaviour
 		START,		//!< kaishi ensyutsu
 		IN_GAME,	//!< game tyuu
 		FINISH,		//!< syuuryou ensyutsu
+		BONUS,		//!< bonus time
 		END,		//!< syuuryou
 	};
 
@@ -30,6 +31,16 @@ public class Game : MonoBehaviour
 			return (state == GAME_STATE.IN_GAME);
 		}
 	}
+	public bool IsBonus {
+		get {
+			return (state == GAME_STATE.BONUS);
+		}
+	}
+	public bool IsAfterGame {
+		get {
+			return (state > GAME_STATE.IN_GAME);
+		}
+	}
 
 	public float AlertTime;
 	public GameObject StartMesPrefab;
@@ -44,6 +55,11 @@ public class Game : MonoBehaviour
 	private GameObject controllerInfo;
 	private GUIText    controllerInfoText;
 	private Fade       fade;
+
+	private int			bonusNum = 0;
+	private int			bonusMoneyNum = 0;
+	private int			bonusLoveNum = 0;
+	private float		bonusWait = 0.0f;
 
 	private SoundManager.SoundStatus hurrySeStatus;
 
@@ -95,6 +111,10 @@ public class Game : MonoBehaviour
 			UpdateFinish();
 			break;
 
+		case GAME_STATE.BONUS:
+			UpdateBonus();
+			break;
+
 		case GAME_STATE.END:
 			UpdateEnd();
 			break;
@@ -128,6 +148,7 @@ public class Game : MonoBehaviour
 			temp.a += 1.0f * Time.deltaTime / 0.25f;
 			if (temp.a >= 1.0f) {
 				temp.a = 1.0f;
+				SoundManager.Instance.requestStream("bgm_desc");
 				phase++;
 			}
 			controllerInfoText.color = temp;
@@ -137,6 +158,7 @@ public class Game : MonoBehaviour
 
 		case 2:
 			if (Input.GetKeyDown(KeyCode.Space)) {
+				SoundManager.Instance.stopStream();
 				phase++;
 			}
 			break;
@@ -169,6 +191,7 @@ public class Game : MonoBehaviour
 			if (StartMesPrefab) {
 				startMes = Instantiate(StartMesPrefab) as GameObject;
 				SoundManager.Instance.requestSe("telop_start_01");
+				SoundManager.Instance.requestStream("bgm");
 			}
 			phase++;
 			break;
@@ -185,7 +208,7 @@ public class Game : MonoBehaviour
 			if (timer <= 0.0f) {
 				timer = stageTime;
 				dropSystem.SetActive( true );
-				SoundManager.Instance.requestStream("bgm");
+				//SoundManager.Instance.requestStream("bgm");
 				
 				ChangeState(GAME_STATE.IN_GAME);
 			}
@@ -235,6 +258,66 @@ public class Game : MonoBehaviour
 			
 		case 1:
 			if (finishMes == null) {
+				if (ScoreSystem.Instance.LoveScore < ScoreSystem.Instance.MaxScore ||
+				    ScoreSystem.Instance.MoneyScore < ScoreSystem.Instance.MaxScore) {
+
+					bonusMoneyNum = (ScoreSystem.Instance.MaxScore - ScoreSystem.Instance.MoneyScore + 99) / 100;
+					bonusLoveNum  = (ScoreSystem.Instance.MaxScore - ScoreSystem.Instance.LoveScore + 99) / 100;
+					bonusNum      = 0;
+
+					ChangeState(GAME_STATE.BONUS);
+				}
+				else {
+					ChangeState(GAME_STATE.END);
+				}
+			}
+			break;
+		}
+	}
+
+	private void UpdateBonus()
+	{
+		switch (phase) {
+		case 0:
+			SoundManager.Instance.requestSe("se_bonus_01");
+			SoundManager.Instance.requestStream("bgm_bonus");
+			phase++;
+			break;
+
+		case 1:
+			phase++;
+			break;
+
+		case 2:
+			if (bonusLoveNum == 0 && bonusMoneyNum == 0) {
+				timer = 4.0f;
+				phase++;
+			}
+			else {
+				if( bonusWait <= 0.0f ) {
+					bonusWait = 0.1f;
+					bonusNum = Random.Range(0, 2);
+
+					if ( bonusLoveNum > 0 && (bonusMoneyNum == 0 || (bonusNum % 2) == 0) ) {
+						DropSystem.Instance.generateBonusDrop(DropSystem.DROP_OBJECT.HEART);
+						bonusLoveNum--;
+						break;
+					}
+					if ( bonusMoneyNum > 0 && (bonusLoveNum == 0 || (bonusNum % 2) == 1) ) {
+						DropSystem.Instance.generateBonusDrop(DropSystem.DROP_OBJECT.MILLION);
+						bonusMoneyNum--;
+						break;
+					}
+				}
+				else {
+					bonusWait -= Time.deltaTime;
+				}
+			}
+			break;
+
+		case 3:
+			timer -= Time.deltaTime;
+			if (timer <= 0.0f) {
 				ChangeState(GAME_STATE.END);
 			}
 			break;

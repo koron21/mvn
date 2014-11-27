@@ -142,6 +142,7 @@ GameObject:
   - 4: {fileID: 77958037}
   - 114: {fileID: 77958036}
   - 82: {fileID: 77958035}
+  - 82: {fileID: 77958038}
   m_Layer: 0
   m_Name: GameSound
   m_TagString: Untagged
@@ -243,6 +244,18 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: da26a1bd1cf1047e58c57915f5cc4584, type: 3}
   - Name: bgm_hurry
     Resource: {fileID: 8300000, guid: de96965aaf85848c297f83bda22ca445, type: 3}
+  - Name: bgm_desc
+    Resource: {fileID: 8300000, guid: 34b4bc6152e4745218d40d72be08c292, type: 3}
+  - Name: se_hit_01
+    Resource: {fileID: 8300000, guid: aece24013277e46b19b29481ba2406d1, type: 3}
+  - Name: se_hit_02
+    Resource: {fileID: 8300000, guid: 092d53e11c9cf4b56a13b3156f769a8b, type: 3}
+  - Name: se_hit_03
+    Resource: {fileID: 8300000, guid: d0b9d750283584a7e9b2918233240b71, type: 3}
+  - Name: bgm_bonus
+    Resource: {fileID: 8300000, guid: d1101cc0aa4d24130a10d561565fd67b, type: 3}
+  - Name: se_bonus_01
+    Resource: {fileID: 8300000, guid: 347eb2472d8bf47e4b3667003e1eba78, type: 3}
 --- !u!4 &77958037
 Transform:
   m_ObjectHideFlags: 0
@@ -255,6 +268,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
+--- !u!82 &77958038
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77958034}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &285443011
 GameObject:
   m_ObjectHideFlags: 0
@@ -2957,6 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoveScore: 0
   MoneyScore: 0
+  MaxScore: 1000
 --- !u!4 &728367337
 Transform:
   m_ObjectHideFlags: 0
@@ -7849,7 +7921,7 @@ GUIText:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2014398393}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Text: Game
   m_Anchor: 0

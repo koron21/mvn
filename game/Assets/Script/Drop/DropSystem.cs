@@ -212,6 +212,23 @@ public class DropSystem : MonoBehaviour
 		}
 	}
 
+	public void generateBonusDrop(DROP_OBJECT objectType)
+	{
+		if( DropUnitPrefabs[(int)objectType] == null ) {
+			return;
+		}
+
+		Player pl = FindObjectOfType<Player>();
+		float posX = pl.transform.position.x + Random.Range(-1.5f, 1.5f);
+
+		Vector3 generatePos = new Vector3(posX, GenerateHeight, GenerateDepth);
+		
+		DropUnit obj = Instantiate(DropUnitPrefabs[(int)objectType]) as DropUnit;
+		obj.setDropType(objectType);
+		obj.transform.position = generatePos;
+		obj.SpeedRate = 6.0f;
+	}
+
 
 	//==========================================================================
 	// Private Functions

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     private EffectCtrl bunbunEffect;
     private EffectCtrl aichanEffect;
+
+	private Game game;
       
     // Use this for initialization
     void Start()
@@ -34,6 +36,8 @@ public class Player : MonoBehaviour
 
         bunbunEffect = bunbun.transform.FindChild("effect").GetComponent<EffectCtrl>();
         aichanEffect = aichan.transform.FindChild("effect").GetComponent<EffectCtrl>();
+
+		game = FindObjectOfType<Game>();
 
         StartCoroutine(StartRoutine());
     }
@@ -56,16 +60,27 @@ public class Player : MonoBehaviour
         float curSpeed = speed * stick;
         Vector3 end = transform.position + forward * curSpeed * Time.deltaTime;
 
-		if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false )
+		if (bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false)
 		{
-	        if (bounds.Contains(end))
-	            controller.SimpleMove(forward * curSpeed);
+			if (game.IsAfterGame == false) {
+		        if (bounds.Contains(end))
+		            controller.SimpleMove(forward * curSpeed);
+			}
 		}
 
         if (gameInput.GetStick1() * gameInput.GetStick2() < 0)
         {
 			if( bunbun.GetComponent<PlayerCtrl>().IsZukkoke == false ) {
 				bunbun.GetComponent<PlayerCtrl>().doZukkoke();
+
+				SoundManager.Instance.requestSe("se_hit_01");
+
+				if( Random.Range(0, 2) == 0 ) {
+					SoundManager.Instance.requestSe("se_hit_02");
+				}
+				else {
+					SoundManager.Instance.requestSe("se_hit_03");
+				}
 			}   
         }
 
