@@ -277,6 +277,10 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: 08a956cdfc7c544d59fc25e9d6ff3f7d, type: 3}
   - Name: title_bgm
     Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
+  - Name: bikkuri
+    Resource: {fileID: 8300000, guid: b88856e113e1c8b4699af053a6b37644, type: 3}
+  - Name: se_game_in
+    Resource: {fileID: 8300000, guid: cc8c90262d2794f3592d69e8fdeb34ce, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

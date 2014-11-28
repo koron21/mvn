@@ -155,6 +155,7 @@ public class TitleCtrl : MonoBehaviour {
 		case 13:
 			if(mFade.isEndMove() == true){
 				Application.LoadLevel(1);
+				SoundManager.Instance.requestSe("se_game_in");
 			}
 			break;
 		}
