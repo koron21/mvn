@@ -187,6 +187,7 @@ public class ResultCtrl : MonoBehaviour {
 				SoundManager.Instance.requestSe("se_build_b");
 				mResultCamera.startQuake(80, 2.0f, 10.0f);
 				mGO_Chair2.SetActive(true);
+				mMoneyGauge.gameObject.SetActive(false);
 				++mResultState;
 			}
 			break;
@@ -316,6 +317,7 @@ public class ResultCtrl : MonoBehaviour {
 
 			if(mFireIndex >= mBaby.Length){
 				++mResultState;
+				mLoveEnergy.gameObject.SetActive(false);
 				mTimer = 0;
 			}
 			break;
@@ -333,6 +335,10 @@ public class ResultCtrl : MonoBehaviour {
 			++mResultState;
 			break;
 		case 15:
+			++mTimer;
+			if(mTimer % 210 == 0){
+				mBaby[mBaby.Length - 1].setParabola(60, 0.7f, mBaby[mBaby.Length - 1].transform.position);
+			}
 			if(mResultText.GetComponentInChildren<ResultText>().IsFinish == true){
 				mResultCamera.startBack(180, 0.01f);
 				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
