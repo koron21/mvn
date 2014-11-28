@@ -56,7 +56,14 @@ MonoBehaviour:
     InvokeTime: 0
   - EventPrefab: {fileID: 11400000, guid: 7288ed943af48424c93fbc06531f2fe8, type: 2}
     InvokeTime: 6
+  - EventPrefab: {fileID: 11400000, guid: 70a72646196da430ca47e924cf5afa4b, type: 2}
+    InvokeTime: 6
+  - EventPrefab: {fileID: 11400000, guid: 10c1af0188faf45748303cfaadca3fa6, type: 2}
+    InvokeTime: 6
+  - EventPrefab: {fileID: 11400000, guid: c58d4940ed02247e5b742ef544f05535, type: 2}
+    InvokeTime: 6
   BasketRef: {fileID: 0}
+  RareDropNum: 0
   Rank: 0
 --- !u!1001 &100100000
 Prefab:
