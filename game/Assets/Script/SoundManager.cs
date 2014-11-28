@@ -47,11 +47,17 @@ public class SoundManager : MonoBehaviour
 			mpInstance = this;
 		}
 		else {
-			throw new UnityException();
+			Destroy(this.gameObject);
+			print ("Already Instance is Created!");
+			return;
+			//throw new UnityException();
 		}
+
+		 DontDestroyOnLoad(this);
 
 		mAudioSourceSe = GetComponents<AudioSource>()[0];
 		mAudioSourceStream = GetComponents<AudioSource>()[1];
+		mAudioSourceStream2 = GetComponents<AudioSource>()[2];
 
 		for(int i=0; i<SoundList.Length; i++) {
 			mSoundMap.Add( SoundList[i].Name, SoundList[i] );
@@ -165,9 +171,29 @@ public class SoundManager : MonoBehaviour
 		mAudioSourceStream.Play();
 	}
 
+	public void requestStream2(string name)
+	{
+		if( mSoundMap.ContainsKey(name) == false ) {
+			return;
+		}
+		
+		AudioClip clip = mSoundMap[name].Resource;
+		if(clip == null) {
+			return;
+		}
+		
+		mAudioSourceStream2.clip = clip;
+		mAudioSourceStream2.Play();
+	}
+
 	public void stopStream()
 	{
 		mAudioSourceStream.Stop();
+	}
+
+	public void stopStream2()
+	{
+		mAudioSourceStream2.Stop();
 	}
 	
 	
@@ -183,6 +209,7 @@ public class SoundManager : MonoBehaviour
 	private static SoundManager mpInstance;
 	private AudioSource mAudioSourceSe;
 	private AudioSource mAudioSourceStream;
+	private AudioSource mAudioSourceStream2;
 	private Dictionary<string, SoundInfo> mSoundMap = new Dictionary<string, SoundInfo>();
 	private Dictionary<string, List<SoundPlay> > mPlayingSoundMap = new Dictionary<string, List<SoundPlay> >();
 	private List<SoundStatus> mSoundStatusList = new List<SoundStatus>();

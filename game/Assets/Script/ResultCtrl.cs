@@ -337,7 +337,6 @@ public class ResultCtrl : MonoBehaviour {
 				mResultCamera.startBack(180, 0.01f);
 				mFade.setFadeColor(new Color(0.0f, 0.0f, 0.0f));
 				mFade.startFadeIn(120);
-				SoundManager.Instance.stopStream();
 				SoundManager.Instance.requestSe("se_return");
 				++mResultState;
 			}

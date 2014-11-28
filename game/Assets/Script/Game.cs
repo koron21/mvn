@@ -150,7 +150,7 @@ public class Game : MonoBehaviour
 			temp.a += 1.0f * Time.deltaTime / 0.25f;
 			if (temp.a >= 1.0f) {
 				temp.a = 1.0f;
-				SoundManager.Instance.requestStream("bgm_desc");
+				//SoundManager.Instance.requestStream("bgm_desc");
 				phase++;
 			}
 			controllerInfoText.color = temp;

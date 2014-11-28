@@ -115,6 +115,7 @@ public class TitleCtrl : MonoBehaviour {
 		case 9:
 			if(isNext() == true){
 				mKemuri2.gameObject.SetActive(false);
+				SoundManager.Instance.requestStream("bgm_desc");
 				++mTitleState;
 			}
 			break;

@@ -22,6 +22,7 @@ public class EndingCtrl : MonoBehaviour {
 			mFade.startFadeOut(80);
 			++mEndingState;
 			mTitleCamera.startMoveBack(200, 0.05f, 0.015f, new Vector3(0.0f, 3.0f, 0.0f));
+			SoundManager.Instance.requestStream2("se_kansei");
 			break;
 		case 1:
 			break;
