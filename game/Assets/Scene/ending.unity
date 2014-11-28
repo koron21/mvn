@@ -85,6 +85,7 @@ GameObject:
   - 33: {fileID: 12457126}
   - 23: {fileID: 12457125}
   - 95: {fileID: 12457124}
+  - 114: {fileID: 12457128}
   m_Layer: 0
   m_Name: ai_taiki01
   m_TagString: Untagged
@@ -150,6 +151,17 @@ Transform:
   - {fileID: 526685249}
   m_Father: {fileID: 0}
   m_RootOrder: 9
+--- !u!114 &12457128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 12457123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7569ab83ee9ee904e968b138a0fc2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &61973917
 GameObject:
   m_ObjectHideFlags: 0
@@ -1852,6 +1864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mFade: {fileID: 1090179143}
+  mBun: {fileID: 829006211}
+  mAi: {fileID: 12457128}
   mTitleCamera: {fileID: 532616526}
 --- !u!4 &386020877
 Transform:
@@ -4136,6 +4150,7 @@ GameObject:
   - 33: {fileID: 829006209}
   - 23: {fileID: 829006208}
   - 95: {fileID: 829006207}
+  - 114: {fileID: 829006211}
   m_Layer: 0
   m_Name: koba_taiki01
   m_TagString: Untagged
@@ -4201,6 +4216,17 @@ Transform:
   - {fileID: 61973918}
   m_Father: {fileID: 0}
   m_RootOrder: 11
+--- !u!114 &829006211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 829006206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7569ab83ee9ee904e968b138a0fc2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &830559622
 Prefab:
   m_ObjectHideFlags: 0
