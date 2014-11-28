@@ -86,6 +86,8 @@ public class DropSystem : MonoBehaviour
 		mGenTime = 0.0f;
 		Rank = 0.0f;
 		mDropCount = 0;
+
+		RareDropNum = 0;
 	}
 	
 	// Update is called once per frame
@@ -112,18 +114,42 @@ public class DropSystem : MonoBehaviour
 #endif
 		// random event set
 		if( mTimer >= mGenTime ) {
-			if( (mDropCount % 10) == 9 ) {
+			if( (mDropCount % 4) == 3 ) {
+				if( Rank >= 65.0f ) {
+					Instantiate( DropEventList[3].EventPrefab );
+				}
+				else {
+					Instantiate( DropEventList[2].EventPrefab );
+				}
+				mGenTime += calcNextDropTime();
+			}
+			else if( (mDropCount % 10) == 9 ) {
 				Instantiate( DropEventList[1].EventPrefab );
 				mGenTime += 2.0f * calcNextDropTime();
 			}
 			else {
-				Instantiate( DropEventList[0].EventPrefab );
+				if( Rank >= 50.0f ) {
+					Instantiate( DropEventList[4].EventPrefab );
+				}
+				else if( Rank >= 25.0f ) {
+					if( (mDropCount % 3) == 2 ) {
+						Instantiate( DropEventList[4].EventPrefab );
+					}
+					else {
+						Instantiate( DropEventList[0].EventPrefab );
+					}
+				}
+				else {
+					Instantiate( DropEventList[0].EventPrefab );
+				}
 				mGenTime += calcNextDropTime();
 			}
+
 			mDropCount++;
 		}
 
-		Rank += mMaxRank / mGameRef.stageTime / 60.0f;
+		Rank = (1.0f - mGameRef.Timer / mGameRef.stageTime) * mMaxRank;
+		//Rank += mMaxRank / mGameRef.stageTime * Time.deltaTime;
 		if( Rank >= mMaxRank ) {
 			Rank = mMaxRank;
 		}
@@ -235,9 +261,9 @@ public class DropSystem : MonoBehaviour
 	//==========================================================================
 	private float calcNextDropTime()
 	{
-		float minTime = 0.5f;
-		float maxTime = 3.0f;
-		float rangeTime = 0.5f;
+		float minTime = 0.3f;
+		float maxTime = 2.5f;
+		float rangeTime = 0.3f;
 		float time = maxTime - (maxTime - minTime) * Rank * Rank / (mMaxRank * mMaxRank);
 
 		return Random.Range (time, time+rangeTime);
@@ -261,6 +287,9 @@ public class DropSystem : MonoBehaviour
 
 	//! Basket Ref
 	public GameObject BasketRef = null;
+
+	//! Rare Drop Num
+	public int RareDropNum = 0;
 
 	//==========================================================================
 	// Private Member Variables

@@ -95,7 +95,7 @@ public class DropUnit : MonoBehaviour
 		}
 
 		// If other is floor, bounce drop object then shrink it
-		if( other.gameObject.name == "Ground" ) {
+		if( other.gameObject.name == "GroundCollider" ) {
 			mVelocity     = -(mVelocity * 0.3f);
 			mState        = STATE.OUT;
 			mOutDelayTime = 0.25f;

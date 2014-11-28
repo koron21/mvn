@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ea095bddc9343469b9af33ad476167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreMoney: 0
-  ScoreLove: 10
+  ScoreMoney: 10
+  ScoreLove: 20
   ScoreOther: 200
   SpeedRate: 1
   GetSEName: get_c_01

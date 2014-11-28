@@ -52,7 +52,6 @@ public class Game : MonoBehaviour
 	private int phase;
 	private GameObject startMes;
 	private GameObject finishMes;
-	private GameObject bonusMes;
 	private GameObject dropSystem;
 	private GameObject controllerInfo;
 	private GUIText    controllerInfoText;
@@ -159,7 +158,7 @@ public class Game : MonoBehaviour
 		}
 
 		case 2:
-			if (Input.GetKeyDown(KeyCode.Space)) {
+			if (Input.GetKeyDown(KeyCode.DownArrow)) {
 				SoundManager.Instance.stopStream();
 				phase++;
 			}
@@ -283,7 +282,7 @@ public class Game : MonoBehaviour
 		case 0:
 			SoundManager.Instance.requestSe("se_bonus_01");
 			SoundManager.Instance.requestStream("bgm_bonus");
-			bonusMes = Instantiate(BonusMesPrefab) as GameObject;
+			Instantiate(BonusMesPrefab);
 			phase++;
 			break;
 

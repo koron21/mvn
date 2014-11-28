@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: ScoreSystem
+  m_Name: RareDropDouble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,12 +36,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b3b40f575a004bfcb1151b7d7c79e41, type: 3}
+  m_Script: {fileID: 11500000, guid: 34a2d07a4ccab4fdea111322c86521c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoveScore: 0
-  MoneyScore: 0
-  MaxScore: 1500
+  RareDrop: 1
+  EventOffsetPosX: 0
+  EventRandRadius: 0
+  DropObjectTypes: 0700000007000000
+  DropOffsetTimes:
+  - 0
+  - .300000012
+  DropCenterPosX:
+  - -.5
+  - .5
+  DropRadiusPosX:
+  - .300000012
+  - .300000012
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

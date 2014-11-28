@@ -46,6 +46,10 @@ public class DropEvent : MonoBehaviour
 		mTimer = 0.0f;
 
 		mOffsetPosX = EventOffsetPosX + Random.Range(-EventRandRadius, EventRandRadius);
+
+		for(int i=1; i<mObjectNum; i++) {
+			DropOffsetTimes[i] += Random.Range(0.0f, DropOffsetTimes[i] * 0.5f);
+		}
 	}
 	
 	// Update is called once per frame
@@ -66,8 +70,19 @@ public class DropEvent : MonoBehaviour
 
 				DropSystem.DROP_OBJECT dropObj = DropObjectTypes[i];
 				if( dropObj == DropSystem.DROP_OBJECT.NUM ) {
-					dropObj = (DropSystem.DROP_OBJECT)Random.Range(1, (int)DropSystem.DROP_OBJECT.NUM);
-				}	
+					if( RareDrop == false ) {
+						dropObj = (DropSystem.DROP_OBJECT)Random.Range(2, 6);
+					}
+					else {
+						if( DropSystem.Instance.RareDropNum % 2 == 0 ) {
+							dropObj = DropSystem.DROP_OBJECT.HEART;
+						}
+						else {
+							dropObj = DropSystem.DROP_OBJECT.MILLION;
+						}
+						DropSystem.Instance.RareDropNum++;
+					}
+				}
 
 				DropSystem.Instance.generateDrop( dropObj, genPosX );
 				mbGeneratedObject[i] = true;
@@ -88,6 +103,7 @@ public class DropEvent : MonoBehaviour
 	// system gawa no timer de invoke time keika shitara prefab kara instantiate sareru
 	//public float EventInvokeTime = 0.0f; // [sec]
 
+	public bool  RareDrop = false;
 	public float EventOffsetPosX = 0.0f;
 	public float EventRandRadius = 0.0f;
 	
