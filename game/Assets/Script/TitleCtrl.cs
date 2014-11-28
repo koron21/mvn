@@ -12,6 +12,8 @@ public class TitleCtrl : MonoBehaviour {
 	public TitleObject mLamp;
 	public GameObject mKemuri1;
 	public GameObject mKemuri2;
+	public ResultObject mBikkuri1;
+	public ResultObject mBikkuri2;
 
 	public Text mExplanation;
 
@@ -28,6 +30,8 @@ public class TitleCtrl : MonoBehaviour {
 		mKemuri1.gameObject.SetActive(false);
 		mKemuri2.gameObject.SetActive(false);
 		mExplanation.setText("");
+		mBikkuri1.setInitScale(0.0f);
+		mBikkuri2.setInitScale(0.0f);
 	}
 
 	// Use this for initialization
@@ -94,6 +98,9 @@ public class TitleCtrl : MonoBehaviour {
 			if(mLamp.isEndMove() == true){
 				++mTitleState;
 				mKemuri1.gameObject.SetActive(true);
+				mBikkuri1.setSetup(0.01f, 0.05f, 5);
+				mBikkuri2.setSetup(0.01f, 0.05f, 5);
+				SoundManager.Instance.requestSe("bikkuri");
 				mTimer = 0;
 			}
 			break;

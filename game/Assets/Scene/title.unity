@@ -843,6 +843,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 559536861}
   m_RootOrder: 0
+--- !u!1 &281890506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 281890511}
+  - 33: {fileID: 281890510}
+  - 64: {fileID: 281890509}
+  - 23: {fileID: 281890508}
+  - 114: {fileID: 281890507}
+  m_Layer: 0
+  m_Name: bikkuri
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &281890507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281890506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7569ab83ee9ee904e968b138a0fc2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &281890508
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281890506}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 560cf25d42e9f0842889366271eb765c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &281890509
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281890506}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &281890510
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281890506}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &281890511
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281890506}
+  m_LocalRotation: {x: -.640856385, y: .298836321, z: -.298836321, w: -.640856385}
+  m_LocalPosition: {x: -.225030422, y: 2.50985956, z: -3.69215035}
+  m_LocalScale: {x: .0500000045, y: .049999997, z: .0500000007}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
 --- !u!1 &293391989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1120,8 @@ MonoBehaviour:
   mLamp: {fileID: 1336914732}
   mKemuri1: {fileID: 674498849}
   mKemuri2: {fileID: 556773163}
+  mBikkuri1: {fileID: 1493861964}
+  mBikkuri2: {fileID: 281890507}
   mExplanation: {fileID: 880045359}
 --- !u!4 &386020877
 Transform:
@@ -1188,6 +1272,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11400000, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b, type: 2}
+      propertyPath: SoundList.Array.size
+      value: 31
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1220,6 +1308,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b, type: 2}
+      propertyPath: SoundList.Array.data[30].Name
+      value: bikkuri
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b, type: 2}
+      propertyPath: SoundList.Array.data[30].Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: b88856e113e1c8b4699af053a6b37644, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b, type: 2}
   m_RootGameObject: {fileID: 1976669525}
@@ -5735,6 +5831,88 @@ Transform:
   - {fileID: 990246583}
   m_Father: {fileID: 12457127}
   m_RootOrder: 0
+--- !u!1 &1493861963
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1493861968}
+  - 33: {fileID: 1493861967}
+  - 64: {fileID: 1493861966}
+  - 23: {fileID: 1493861965}
+  - 114: {fileID: 1493861964}
+  m_Layer: 0
+  m_Name: bikkuri
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1493861964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493861963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7569ab83ee9ee904e968b138a0fc2de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!23 &1493861965
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493861963}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 560cf25d42e9f0842889366271eb765c, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &1493861966
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493861963}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1493861967
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493861963}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1493861968
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1493861963}
+  m_LocalRotation: {x: -.640856385, y: .298836321, z: -.298836321, w: -.640856385}
+  m_LocalPosition: {x: 1.05423999, y: 2.52195644, z: -3.64529443}
+  m_LocalScale: {x: .0500000007, y: .0500000007, z: .0500000007}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
 --- !u!1001 &1497924339
 Prefab:
   m_ObjectHideFlags: 0
@@ -6509,7 +6687,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7d866f7e30f5e6c45a3cf123c10e210b, type: 2}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d866f7e30f5e6c45a3cf123c10e210b, type: 2}
@@ -6644,6 +6822,7 @@ GameObject:
   - 114: {fileID: 1976669528}
   - 82: {fileID: 1976669527}
   - 82: {fileID: 1976669526}
+  - 82: {fileID: 1976669530}
   m_Layer: 0
   m_Name: GameSoundAll
   m_TagString: Untagged
@@ -6842,6 +7021,8 @@ MonoBehaviour:
     Resource: {fileID: 8300000, guid: 08a956cdfc7c544d59fc25e9d6ff3f7d, type: 3}
   - Name: title_bgm
     Resource: {fileID: 8300000, guid: 62a8a0594269b4aaaa5f79ee329c60da, type: 3}
+  - Name: bikkuri
+    Resource: {fileID: 8300000, guid: b88856e113e1c8b4699af053a6b37644, type: 3}
 --- !u!4 &1976669529
 Transform:
   m_ObjectHideFlags: 0
@@ -6854,6 +7035,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 23
+--- !u!82 &1976669530
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200004, guid: e7ccf79f38efe43c3b8cf71bc5df4b8b,
+    type: 2}
+  m_PrefabInternal: {fileID: 495120314}
+  m_GameObject: {fileID: 1976669525}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1001 &2023048843
 Prefab:
   m_ObjectHideFlags: 0
