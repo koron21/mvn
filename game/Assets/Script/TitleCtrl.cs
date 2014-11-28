@@ -10,7 +10,8 @@ public class TitleCtrl : MonoBehaviour {
 	public GameObject mSphere;
 	public TitleObject mSphereBase;
 	public TitleObject mLamp;
-	public TitleObject mLampKemuri;
+	public GameObject mKemuri1;
+	public GameObject mKemuri2;
 
 	public Text mExplanation;
 
@@ -24,7 +25,8 @@ public class TitleCtrl : MonoBehaviour {
 	}
 
 	void Init(){
-		mLampKemuri.renderer.enabled = false;
+		mKemuri1.gameObject.SetActive(false);
+		mKemuri2.gameObject.SetActive(false);
 		mExplanation.setText("");
 	}
 
@@ -55,6 +57,7 @@ public class TitleCtrl : MonoBehaviour {
 			if(mFade.isEndMove() == true){
 				++mTitleState;
 				string txt = "新婚旅行でハワイに来た良宣、愛夫妻。\nショッピングを楽しんでいたら、\n怪しいお店に迷い込んでしまった様子。";
+				mTitleUI.renderer.enabled = false;
 				mExplanation.setText(txt);
 				mExplanation.startTextOut(4);
 			}
@@ -90,24 +93,32 @@ public class TitleCtrl : MonoBehaviour {
 		case 6:
 			if(mLamp.isEndMove() == true){
 				++mTitleState;
-				mLampKemuri.renderer.enabled = true;
-				mLampKemuri.setupKemuri(180, 0.02f, 0.05f, 1.0f, new Vector3(-1.0f, 2.0f, 0.0f));
+				mKemuri1.gameObject.SetActive(true);
+				mTimer = 0;
 			}
 			break;
 		case 7:
-			if(mLampKemuri.isEndMove() == true){
-				mLampKemuri.renderer.enabled = false;
+			++mTimer;
+			if(mTimer == 60){
+				mKemuri2.gameObject.SetActive(true);
 				++mTitleState;
 			}
 			break;
 		case 8:
 			if(isNext() == true){
-				++mTitleState;
+				mKemuri1.gameObject.SetActive(false);
 				SoundManager.Instance.stopStream();
 				SoundManager.Instance.requestSe("oyakata_02");
+				++mTitleState;
 			}
 			break;
 		case 9:
+			if(isNext() == true){
+				mKemuri2.gameObject.SetActive(false);
+				++mTitleState;
+			}
+			break;
+		case 10:
 			if(isNext() == true){
 				Vector3 end = mSphere.gameObject.transform.position;
 				mTitleCamera.startLookAt(end, 0.05f, 120);
@@ -115,14 +126,16 @@ public class TitleCtrl : MonoBehaviour {
 				mTimer = 0;
 			}
 			break;
-		case 10:
+		case 11:
 			if(mTitleCamera.isEndMove() == true){
-				mTitleCamera.startMoveForward(120, 0.04f);
-				++mTitleState;
-				mTimer = 0;
+				if(isNext() == true){
+					mTitleCamera.startMoveForward(120, 0.04f);
+					++mTitleState;
+					mTimer = 0;
+				}
 			}
 			break;
-		case 11:
+		case 12:
 			++mTimer;
 			if(mTimer == 40){
 				mFade.setFadeColor(new Color(1.0f, 1.0f, 1.0f));
@@ -131,7 +144,7 @@ public class TitleCtrl : MonoBehaviour {
 				mTimer = 0;
 			}
 			break;
-		case 12:
+		case 13:
 			if(mFade.isEndMove() == true){
 				Application.LoadLevel(1);
 			}
