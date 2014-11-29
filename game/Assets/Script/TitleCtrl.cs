@@ -108,6 +108,8 @@ public class TitleCtrl : MonoBehaviour {
 			++mTimer;
 			if(mTimer == 60){
 				mKemuri2.gameObject.SetActive(true);
+				mBikkuri1.renderer.enabled = false;
+				mBikkuri2.renderer.enabled = false;
 				++mTitleState;
 			}
 			break;
